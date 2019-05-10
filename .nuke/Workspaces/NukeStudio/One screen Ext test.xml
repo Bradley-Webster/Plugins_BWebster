@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="2596" y="0" w="1223" h="1163" screen="1">
+        <splitter orientation="2">
+            <split size="527"/>
+            <splitter orientation="1">
+                <split size="301"/>
+                <splitter orientation="2">
+                    <split size="527"/>
+                    <dock id="" activePageId="uk.co.thefoundry.project.2">
+                        <page id="uk.co.thefoundry.project.2" layout="splitter(160,115)"/>
+                    </dock>
+                </splitter>
+                <split size="784"/>
+                <dock id="" activePageId="uk.co.thefoundry.sequenceviewer.1" focus="true">
+                    <page id="uk.co.thefoundry.sequenceviewer.1"/>
+                    <page id="Viewer.1"/>
+                    <page id="uk.co.thefoundry.exportqueue.1"/>
+                </dock>
+                <split size="130"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                    <page id="uk.co.thefoundry.clipeffects.1"/>
+                </dock>
+            </splitter>
+            <split size="588"/>
+            <splitter orientation="1">
+                <split size="1223"/>
+                <dock id="" activePageId="uk.co.thefoundry.timeline.1">
+                    <page id="uk.co.thefoundry.timeline.1" layout="splitter(283,936)"/>
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+    <window x="1922" y="397" w="651" h="118" screen="1">
+        <splitter orientation="2">
+            <split size="118"/>
+            <dock id="" activePageId="uk.co.thefoundry.monitorController.1">
+                <page id="uk.co.thefoundry.monitorController.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>

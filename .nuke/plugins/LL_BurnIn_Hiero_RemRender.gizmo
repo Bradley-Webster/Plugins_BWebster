@@ -1,0 +1,436 @@
+#! C:/Program Files/Nuke11.3v2/nuke-11.3.2.dll -nx
+version 11.3 v2
+Gizmo {
+ tile_color 0x931a18ff
+ gl_color 0xff
+ label "Foundry Repace Test"
+ note_font helvetica
+ note_font_color 0xffffffff
+ addUserKnob {20 Settings}
+ addUserKnob {1 rootformatvalue l INVISIBLE +INVISIBLE}
+ rootformatvalue "\[value root.format.w]x\[value root.format.h]"
+ addUserKnob {52 py T "nuke.thisNode()\['RF'].setValue(nuke.thisNode()\['rootformatvalue'].value())" +STARTLINE}
+ addUserKnob {6 Date +STARTLINE}
+ Date true
+ addUserKnob {6 Logo -STARTLINE}
+ Logo true
+ addUserKnob {6 Name -STARTLINE}
+ Name true
+ addUserKnob {6 timecode l Timecode -STARTLINE}
+ timecode true
+ addUserKnob {6 FrameCount l "Frame Count" -STARTLINE}
+ FrameCount true
+ addUserKnob {26 RF l "Root Format" T 2048x1556}
+ addUserKnob {4 input_format l "Input Format" t "Set the Format for the Burnin:\nClip: The Burnin will be adjusted to the Clip-Format (Text will not be in the Letterbox)\nSequence: The Burnin will be adjusted to the Sequence-Format (Text might be in the Letterbox)" M {Clip Sequence}}
+ input_format Sequence
+ addUserKnob {4 MaskAR l "Mask Aspect Ratio" M {1.33 1.78 1.85 2.35 2.39 2.40 "" "" "" ""}}
+ MaskAR 2.39
+ addUserKnob {4 MaskO l "Mask Opacity" M {0.75 1.00 "" "" "" "" "" "" "" "" "" "" "" ""}}
+ addUserKnob {6 MaskON l MaskOn -STARTLINE}
+ addUserKnob {6 MaskL l "Mask Line" -STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 leer l "" +STARTLINE T "\t\n\n"}
+ addUserKnob {26 Logo_1 l "" -STARTLINE T "<img src=\"G:\\globals\\pipelineAssets\\logo\\ll_BurnIn_logo_weiss_schwarz.png\"/>"}
+ addUserKnob {26 leer2 l "" -STARTLINE T "\t\t\t\t\t\t\t\t"}
+ addUserKnob {26 GizmoVersion l "" -STARTLINE T "\n\nversion 1.1.0"}
+ addUserKnob {20 Custom}
+ addUserKnob {1 dateCustom l Date}
+ addUserKnob {1 nameCustom l Name}
+ addUserKnob {1 topMiddle l "Top Middle"}
+ addUserKnob {1 timecodeCustom l Timecode}
+ addUserKnob {26 text_1 l "" +STARTLINE}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x7171c600
+  label Gui-Burnin
+  note_font_size 42
+  xpos -429
+  ypos 258
+  bdwidth 534
+  bdheight 1107
+ }
+ Input {
+  inputs 0
+  name input_preview
+  xpos -323
+  ypos -2911
+ }
+ Dot {
+  name Dot1
+  xpos -289
+  ypos -239
+ }
+ Dot {
+  name Dot2
+  xpos -289
+  ypos 233
+ }
+set N7113ad90 [stack 0]
+push $N7113ad90
+ Viewer {
+  inputs 2
+  frame_range 100-100
+  gamma 3.14
+  colour_sample_bbox {0.046875 0.3520833254 0.05208333209 0.3552083373}
+  name Viewer1
+  xpos -679
+  ypos 903
+ }
+push $N7113ad90
+ Dot {
+  name Dot9
+  xpos -289
+  ypos 275
+ }
+set N71141120 [stack 0]
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{FrameCount}}
+  message "\[expression \{\[python nuke.thisNode().firstFrame()] + \[expression \{int(\[python nuke.thisNode().metadata(\"input/frame\", \[frame])])\}]\}]"
+  old_message {{91 101 120 112 114 101 115 115 105 111 110 32 123 49 32 43 32 91 101 120 112 114 101 115 115 105 111 110 32 123 105 110 116 40 41 125 93 125 93}
+    }
+  old_expression_markers {{13 13 34 33}
+    }
+  box {{width/2} {global_font_scale*font_size+height/20} {"width-clamp(\n(int\n(ceil\n(width - height * \[value parent.MaskAR]) / 2\n)\n)\n+\n(int\n(ceil\n(width / \[value parent.MaskAR]) / 32\n)\n)\n, (int\n(ceil\n(width/40)\n)\n)\n, width\n)"} {height-height+height/20}}
+  xjustify right
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 132
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name frame_hiero
+  xpos -183
+  ypos 309
+ }
+push $N71141120
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{FrameCount}}
+  message "\[python nuke.thisNode().metadata(\"input/frame\", \[frame])]"
+  old_expression_markers {{0 -1}
+    }
+  box {{width/2} {global_font_scale*font_size+height/20} {"width-clamp(\n(int\n(ceil\n(width - height * \[value parent.MaskAR]) / 2\n)\n)\n+\n(int\n(ceil\n(width / \[value parent.MaskAR]) / 32\n)\n)\n, (int\n(ceil\n(width/40)\n)\n)\n, width\n)"} {height-height+height/20}}
+  xjustify right
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 23
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name frameCount_hiero
+  xpos -323
+  ypos 315
+ }
+set N71141880 [stack 0]
+ Switch {
+  inputs 2
+  which {{"\[if \{\[lindex \[split \[python nuke.thisNode().metadata(\"input/filename\", \[frame])] . ] end ]==\"mp4\"\} \{return \"1\"\} \{return \"0\"\}]"}}
+  name Switch8
+  xpos -172
+  ypos 370
+ }
+push $N71141880
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{"Date*\[if \{\[value parent.dateCustom]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  message "\[value parent.dateCustom]"
+  old_expression_markers {{0 -1}
+    }
+  box {{"clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {height-height/20} {"width/2 + clamp(\n(int\n(ceil\n(width - height * \[value parent.MaskAR]) / 2\n)\n)\n+\n(int\n(ceil\n(width / \[value parent.MaskAR]) / 32\n)\n)\n, (int\n(ceil\n(width/40)\n)\n)\n, width\n)"} {height-font_size*global_font_scale-height/20}}
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 25
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name datum_hiero_custom_2
+  xpos -323
+  ypos 428
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{"Date*\[if \{\[value parent.dateCustom]>=0\} \{return \"0\"\} \{return \"1\"\}]"}}
+  message "\[date %d.%m.%y]"
+  old_message {{48 53 46 48 52 46 49 57}
+    }
+  old_expression_markers {{0 7}
+    }
+  box {{"clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {height-height/20} {"width/2 + clamp(\n(int\n(ceil\n(width - height * \[value parent.MaskAR]) / 2\n)\n)\n+\n(int\n(ceil\n(width / \[value parent.MaskAR]) / 32\n)\n)\n, (int\n(ceil\n(width/40)\n)\n)\n, width\n)"} {height-font_size*global_font_scale-height/20}}
+  yjustify center
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 0 1}
+    }
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name datum_hiero
+  xpos -323
+  ypos 540
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.topMiddle]"
+  old_expression_markers {{0 -1}
+    }
+  box {{width/4} {height-height/20} {width/2+width/4} {height-global_font_scale*font_size-height/20}}
+  xjustify center
+  yjustify center
+  transforms {{0 2}
+    }
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name middle_hiero1
+  xpos -323
+  ypos 688
+ }
+ Dot {
+  name Dot6
+  xpos -289
+  ypos 751
+ }
+set N71142390 [stack 0]
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{timecode}}
+  message "\[value parent.timecodeCustom]"
+  old_expression_markers {{0 -1}
+    }
+  box {{width/4} {global_font_scale*font_size+height/20} {width/2+width/4} {height/20}}
+  xjustify center
+  yjustify center
+  transforms {{0 2}
+    }
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name bottom_middle_hiero1
+  xpos -323
+  ypos 845
+ }
+push $N71142390
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{timecode}}
+  message "no TC found"
+  old_message {{110 111 32 84 67 32 102 111 117 110 100}
+    }
+  box {{width/4} {global_font_scale*font_size+height/20} {width/2+width/4} {height/20}}
+  xjustify center
+  yjustify center
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100 9 100 10 100 0 1 1 1 2 1 3 1 4 1 5 1 6 1 7 1 8 1 9 1 10 1}
+    }
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name bottom_middle_hiero2
+  xpos -206
+  ypos 846
+ }
+push $N71142390
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{timecode}}
+  message "\[python nuke.thisNode().metadata(\"input/timecode\", \[frame])]"
+  old_expression_markers {{0 -1}
+    }
+  box {{width/4} {global_font_scale*font_size+height/20} {width/2+width/4} {height/20}}
+  xjustify center
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 48
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name bottom_middle_hiero
+  xpos -80
+  ypos 846
+ }
+ Switch {
+  inputs 2
+  which {{"\[if \{\[value bottom_middle_hiero.message]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  name Switch2
+  xpos -206
+  ypos 980
+ }
+ Switch {
+  inputs 2
+  which {{"\[if \{\[value parent.timecodeCustom]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  name Switch3
+  xpos -323
+  ypos 980
+ }
+ Dot {
+  name Dot7
+  xpos -289
+  ypos 1060
+ }
+set N71143250 [stack 0]
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{Name}}
+  message "\[value parent.nameCustom]"
+  old_expression_markers {{0 -1}
+    }
+  box {{"clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {global_font_scale*font_size+height/20} {"width/2+clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {height/20}}
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 1
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name name_hiero_1
+  xpos -323
+  ypos 1161
+ }
+push $N71143250
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{Name}}
+  message "\[python str(nuke.thisNode().metadata(\"hiero/clip\", \[frame])).replace(\".\",\"_\")]"
+  old_message {{78 111 110 101}
+    }
+  old_expression_markers {{0 3}
+    }
+  box {{"clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {global_font_scale*font_size+height/20} {"width/2+clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {height/20}}
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 60
+  global_font_scale {{height/font_size/36}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name name_hiero_2
+  xpos -141
+  ypos 1160
+ }
+ Switch {
+  inputs 2
+  which {{"\[if \{\[value parent.nameCustom]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  name Switch4
+  xpos -323
+  ypos 1278
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{parent.Logo}}
+  message LAVALabs
+  old_message {{76 65 86 65 76 97 98 115}
+    }
+  box {{width/2} {height-height/20} {"width-clamp(\n(int\n(ceil\n(width - height * \[value parent.MaskAR]) / 2\n)\n)\n+\n(int\n(ceil\n(width / \[value parent.MaskAR]) / 32\n)\n)\n, (int\n(ceil\n(width/40)\n)\n)\n, width\n)"} {height-font_size*global_font_scale-height/20}}
+  xjustify right
+  yjustify center
+  transforms {{0 2}
+    }
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name Logo_hiero
+  xpos -323
+  ypos 1333
+ }
+ Output {
+  name Output1
+  xpos -323
+  ypos 1637
+ }
+end_group

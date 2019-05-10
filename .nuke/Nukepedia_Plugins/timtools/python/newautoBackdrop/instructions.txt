@@ -1,0 +1,23 @@
+I use the Backdrop node to label my nuke scripts with a random color and when I do the color is always mustard or purple! Until I fixed the problem to a true random color selection.
+
+I have made small changes to the default autoBackdrop.py script for the color selection when the node is used.
+
+Also have added a message box asking for the label name before the Backdrop node is created. Faster than manually changing the name in the properties bin.
+
+If you have any suggestions to improve this I'll do my best to composite your ideas.
+
+===================================================
+
+Instructions
+
+Copy newautoBackdrop.py to your .nuke folder
+
+Copy and paste this into your menu.py:
+
+import newautoBackdrop
+myToolbar = nuke.toolbar( 'Nodes' )
+myToolbar.addCommand( 'Other/Backdrop', lambda: newautoBackdrop.newautoBackdrop(), icon='Backdrop.png' )
+
+author
+www.harrisonly.co.uk
+

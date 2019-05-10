@@ -1,0 +1,186 @@
+#! C:/Program Files/Nuke11.3v2/nuke-11.3.2.dll -nx
+version 11.3 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="1920" h="1178" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1257" stretch="1"/>
+            <splitter orientation="2">
+                <split size="836"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="294"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <splitter orientation="2">
+                <split size="1134"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                    <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+    <window x="1912" y="-8" w="1920" h="1182" maximized="1" screen="1">
+        <splitter orientation="2">
+            <split size="1182"/>
+            <dock id="" activePageId="uk.co.thefoundry.scripteditor.1" focus="true">
+                <page id="uk.co.thefoundry.scripteditor.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Users/CS_SYD_PC2/.nuke/ToolSets/Write_FileType_Replace.nk
+ frame 4
+ last_frame 30
+ lock_range true
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Read {
+ inputs 0
+ file_type mov
+ file E:/Users/PC_SYD_PC2_E_Drive/Pictures/Test_Footage/MOV/abc.mov
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ last 30
+ origlast 30
+ origset true
+ mov32_codec {{0} "Apple ProRes 422 (HQ) (appl - apch)"}
+ mov32_pixel_format {{0} "default (YCbCrA 32-bit 444 Float (r4fl))" "RGBA  8-bit" "RGBA  16-bit (b64a)" "YCbCrA 8-bit 444 (v408)" "YCbCrA 8-bit 444 Biased (r408)" "YCbCr  8-bit 422 (2vuy)" "YCbCrA 32-bit 444 Float (r4fl)" "YCbCr  16-bit 422 (v216)"}
+ name Read1
+ note_font helvetica
+ xpos -171
+ ypos 579
+}
+set N4f752dd0 [stack 0]
+Viewer {
+ frame 4
+ frame_range 1-30
+ name Viewer1
+ note_font helvetica
+ xpos -381
+ ypos 687
+}
+push $N4f752dd0
+CornerPin2D {
+ to1 {0 0}
+ to2 {1920 0}
+ to3 {1920 1080}
+ to4 {0 1080}
+ invert false
+ from1 {{curve x1 426 x4 434.1621399 447.758667 x12 483.4534912 x15 518.8620605 x19 558.7897339 589.6463013 610.4290771 x30 623} {curve x1 685.5 x4 681.5532227 679.5773926 x12 683.12146 x15 688.9827271 x19 700.5828857 715.0986328 731.050293 x30 753}}
+ from2 {{curve x1 583 x4 589.0695801 600.9129639 x12 634.3724365 x15 669 x19 709.3538818 741.0048828 762.963562 x30 776.5} {curve x1 685 x4 680.9459229 678.9213257 x12 681.4725952 x15 686.5 x19 697.1740112 710.9492188 726.6404419 x30 748.5}}
+ from3 {{curve x1 576.5 x4 583.2027588 595.6261597 x12 629.9447632 x15 665 x19 705.6942139 737.6278687 759.8094482 x30 773.5} {curve x1 783 x4 779.1353149 777.1968384 x12 781.6685181 x15 788 x19 799.210144 813.0995483 828.2192993 x30 849.5}}
+ from4 {{curve x1 419 x4 427.5 441.5 x12 478 x15 514 x19 555 587 609 x30 622.5} {curve x1 781.5 x4 777.5 775.5 x12 778.5 x15 784 x19 795.5 810 826 x30 848}}
+ name CornerPin2D1
+ note_font helvetica
+ xpos -297
+ ypos 730
+}
+push $N4f752dd0
+RotoPaint {
+ output {rgba.alpha none none mask_planartrack.a}
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x44700000 x44070000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {layer PlanarTrackLayer1
+     {f 2098048}
+     {t 0}
+     {a pt 1 pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+     {curvegroup Bezier1 512 bezier
+      {{cc
+        {f 8192}
+        {px
+	 {x41000000 x41f00000}
+	 {{{0 -}}
+      {{0 -}}}
+	 {{{x43e0c445 0 1 x40fb5871 1}
+       {x441b9556 x40fb5871 1 0 1}}
+      {{x4441bddd 0 1 x40517451 1}
+       {x4453bddc x40517451 1 0 1}}}
+	 {{{0 -}}
+      {{0 -}}}
+	 {{{0 -}}
+      {{xbf199800 -}}}
+	 {{{x44170dde 0 1 x40fb586f 1}
+       {x44424111 x40fb586f 1 0 1}}
+      {{x44424000 0 1 x40517451 1}
+       {x44543fff x40517451 1 0 1}}}
+	 {{{0 -}}
+      {{x3f199800 -}}}
+	 {{{0 -}}
+      {{0 -}}}
+	 {{{x44180000 0 1 x40fb586f 1}
+       {x44433333 x40fb586f 1 0 1}}
+      {{x442a199a 0 1 x40517451 1}
+       {x443c1999 x40517451 1 0 1}}}
+	 {{{0 -}}
+      {{0 -}}}
+	 {{{0 -}}
+      {{0 -}}}
+	 {{{x43e21111 0 1 x40fb5871 1}
+       {x441c3bbc x40fb5871 1 0 1}}
+      {{x44299333 0 1 x40517451 1}
+       {x443b9332 x40517451 1 0 1}}}
+	 {{{0 -}}
+      {{0 -}}}}}      idem}
+      {tx x41000000 x4403fccd x44362001}
+      {a osw x41200000 osf 0 str 1 spx x44700000 spy x44070000 sb 1 ltn x41000000 ltm x41000000 tt x40800000 pt 1}}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {960 540}
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ lifetime_start 8
+ lifetime_end 8
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ correction 1
+ is_pt_node true
+ name RotoPaint1
+ note_font helvetica
+ selected true
+ xpos -85
+ ypos 688
+}

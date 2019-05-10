@@ -1,0 +1,6 @@
+<args format='1.0' scope='/root' fixedCEL='/root'>
+  <int name='colorRamp' default='5' widget='colorRamp'/>
+  <string name='colorRamp_Interpolation' default='linear' options='linear|catmull-rom|bspline' widget='null'/>
+  <float name='colorRamp_Knots' default='0,0,0.5,1,1' size='5' widget='null'/>
+  <float name='colorRamp_Colors' default='1,0,0,1,0,0,0,1,0,0,0,1,0,0,1' size='15' tupleSize='3' widget='null'/>
+</args>

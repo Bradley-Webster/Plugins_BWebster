@@ -1,0 +1,110 @@
+#! C:/Program Files/Nuke10.5v1/nuke-10.5.1.dll -nx
+version 10.5 v1
+Gizmo {
+ addUserKnob {20 HandyGrain}
+ addUserKnob {26 r l "@b;Key Intensity"}
+ addUserKnob {41 range T Keyer2.range}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {26 "" l "@b;Size"}
+ addUserKnob {41 red_size l red T Grain2_2.red_size}
+ addUserKnob {41 green_size l green T Grain2_2.green_size}
+ addUserKnob {41 blue_size l blue T Grain2_2.blue_size}
+ addUserKnob {26 "" l "@b;Irregularity"}
+ addUserKnob {41 red_i l red T Grain2_2.red_i}
+ addUserKnob {41 green_i l green T Grain2_2.green_i}
+ addUserKnob {41 blue_i l blue T Grain2_2.blue_i}
+ addUserKnob {26 "" l "@b;Intensity"}
+ addUserKnob {41 red_m l red T Grain2_2.red_m}
+ addUserKnob {41 green_m l green T Grain2_2.green_m}
+ addUserKnob {41 blue_m l blue T Grain2_2.blue_m}
+ addUserKnob {41 black T Grain2_2.black}
+ addUserKnob {41 black_panelDropped l "panel dropped state" T Grain2_2.black_panelDropped}
+ addUserKnob {41 minimum T Grain2_2.minimum}
+ addUserKnob {41 minimum_panelDropped l "panel dropped state" T Grain2_2.minimum_panelDropped}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -580
+  ypos -198
+ }
+ Dot {
+  name Dot1
+  xpos -546
+  ypos -158
+ }
+set N46e28400 [stack 0]
+ Dot {
+  name Dot12
+  xpos -651
+  ypos -158
+ }
+ Keyer {
+  operation "luminance key"
+  range {0 0.5568609379 1 1}
+  name Keyer2
+  xpos -685
+  ypos -95
+ }
+ Dot {
+  name Dot13
+  xpos -651
+  ypos -17
+ }
+push $N46e28400
+ Dot {
+  name Dot14
+  xpos -436
+  ypos -158
+ }
+push $N46e28400
+ Grain2 {
+  name Grain2_2
+  label "Kodak 5248"
+  xpos -580
+  ypos -98
+  red_size 2.1
+  green_size 2
+  blue_size 2.7
+  red_m 0.07
+  green_m 0.065
+  blue_m 0.085
+  black 0.0055
+  minimum {0 0 0}
+  maskgrain false
+ }
+set N37e4f00 [stack 0]
+ Dissolve {
+  inputs 2
+  which 0.5
+  name Dissolve2
+  xpos -470
+  ypos -98
+ }
+ Dot {
+  name Dot16
+  xpos -436
+  ypos -17
+ }
+push $N37e4f00
+ Keymix {
+  inputs 3
+  name Keymix3
+  xpos -580
+  ypos -27
+ }
+set N40e80800 [stack 0]
+ Output {
+  name Output1
+  xpos -580
+  ypos 73
+ }
+push $N40e80800
+ Viewer {
+  frame_range 1-100
+  name Viewer1
+  selected true
+  xpos -411
+  ypos 109
+ }
+end_group

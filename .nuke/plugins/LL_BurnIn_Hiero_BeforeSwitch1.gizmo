@@ -1,0 +1,2306 @@
+#! C:/Program Files/Nuke11.3v3/nuke-11.3.3.dll -nx
+version 11.3 v3
+Gizmo {
+ tile_color 0x931a18ff
+ gl_color 0xff
+ label "Before Switch Test"
+ note_font helvetica
+ note_font_color 0xffffffff
+ addUserKnob {20 Settings}
+ addUserKnob {1 rootformatvalue l INVISIBLE +INVISIBLE}
+ rootformatvalue "\[value root.format.w]x\[value root.format.h]"
+ addUserKnob {52 py T "nuke.thisNode()\['RF'].setValue(nuke.thisNode()\['rootformatvalue'].value())" +STARTLINE}
+ addUserKnob {6 Date +STARTLINE}
+ Date true
+ addUserKnob {6 Logo -STARTLINE}
+ Logo true
+ addUserKnob {6 Name -STARTLINE}
+ Name true
+ addUserKnob {6 timecode l Timecode -STARTLINE}
+ timecode true
+ addUserKnob {6 FrameCount l "Frame Count" -STARTLINE}
+ FrameCount true
+ addUserKnob {26 RF l "Root Format" T 2048x1556}
+ addUserKnob {4 input_format l "Input Format" t "Set the Format for the Burnin:\nClip: The Burnin will be adjusted to the Clip-Format (Text will not be in the Letterbox)\nSequence: The Burnin will be adjusted to the Sequence-Format (Text might be in the Letterbox)" M {Clip Sequence}}
+ input_format Sequence
+ addUserKnob {4 MaskAR l "Mask Aspect Ratio" M {1.33 1.78 1.85 2.35 2.39 2.40 "" "" "" ""}}
+ MaskAR 2.39
+ addUserKnob {4 MaskO l "Mask Opacity" M {0.75 1.00 "" "" "" "" "" "" "" "" "" "" "" ""}}
+ addUserKnob {6 MaskON l MaskOn -STARTLINE}
+ addUserKnob {6 MaskL l "Mask Line" -STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 leer l "" +STARTLINE T "\t\n\n"}
+ addUserKnob {26 Logo_1 l "" -STARTLINE T "<img src=\"G:\\globals\\pipelineAssets\\logo\\ll_BurnIn_logo_weiss_schwarz.png\"/>"}
+ addUserKnob {26 leer2 l "" -STARTLINE T "\t\t\t\t\t\t\t\t"}
+ addUserKnob {26 GizmoVersion l "" -STARTLINE T "\n\nversion 1.1.0"}
+ addUserKnob {20 Custom}
+ addUserKnob {1 dateCustom l Date}
+ addUserKnob {1 nameCustom l Name}
+ addUserKnob {1 topMiddle l "Top Middle"}
+ addUserKnob {1 timecodeCustom l Timecode}
+ addUserKnob {26 text_1 l "" +STARTLINE}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x7171c600
+  label Gui-Burnin
+  note_font_size 42
+  xpos -429
+  ypos 258
+  bdwidth 534
+  bdheight 1107
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  tile_color 0x7171c600
+  label Export-Burnin
+  note_font_size 42
+  xpos 442
+  ypos 255
+  bdwidth 645
+  bdheight 1119
+ }
+ Input {
+  inputs 0
+  name input_preview
+  xpos -323
+  ypos -2911
+ }
+ Dot {
+  name Dot1
+  xpos -289
+  ypos -239
+ }
+set N70e2ab10 [stack 0]
+push 0
+ Switch {
+  inputs 2
+  which {{"!\$gui"}}
+  name Switch10
+  note_font helvetica
+  xpos -112
+  ypos 135
+ }
+ Dot {
+  name Dot3
+  xpos 540
+  ypos 233
+ }
+set N70e2aec0 [stack 0]
+ Reformat {
+  resize none
+  black_outside true
+  name Reformat1
+  xpos 506
+  ypos 336
+  disable {{!input_format x1 1}}
+ }
+ Text {
+  opacity {{FrameCount}}
+  message "\[frame]"
+  font C:/Windows/Fonts/arial.ttf
+  size {{input.format.h/36}}
+  xjustify right
+  yjustify center
+  Transform 1
+  box {{input.format.w/2} {size+input.format.h/20} {"input.format.w-clamp(\n(int\n(ceil\n(input.format.w - input.format.h * \[value parent.MaskAR]) / 2\n)\n)\n+\n(int\n(ceil\n(input.format.w / \[value parent.MaskAR]) / 32\n)\n)\n, (int\n(ceil\n(input.format.w/40)\n)\n)\n, input.format.w\n)"} {input.format.h-input.format.h+input.format.h/20}}
+  center {{root.format.w} {root.format.h-root.format.h}}
+  name frameCount
+  xpos 506
+  ypos 412
+  disable {{"\$gui"}}
+ }
+set N70e2b9d0 [stack 0]
+ Text {
+  opacity {{"Date*\[if \{\[value parent.dateCustom]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  message "\[value parent.dateCustom]"
+  font G:/globals/pipelineAssets/fonts/FreeSans.ttf
+  size {{input.format.h/36}}
+  yjustify center
+  Transform 1
+  box {{"clamp((int(ceil(input.format.w-input.format.h*\[value parent.MaskAR])/2))+(int(ceil(input.format.w/\[value parent.MaskAR])/32)), (int(ceil(input.format.w/40))), input.format.w)"} {input.format.h-input.format.h/20} {"input.format.w/2 + clamp((int(ceil(input.format.w-input.format.h*\[value parent.MaskAR])/2))+(int(ceil(input.format.w/\[value parent.MaskAR])/32)), (int(ceil(input.format.w/40))), input.format.w)"} {input.format.h-size-input.format.h/20}}
+  center {0 {root.format.h}}
+  name datum1
+  xpos 506
+  ypos 479
+  disable {{"\$gui"}}
+ }
+ Text {
+  opacity {{"Date*\[if \{\[value parent.dateCustom]>=0\} \{return \"0\"\} \{return \"1\"\}]"}}
+  message "\[date %d.%m.%y]"
+  font C:/Windows/Fonts/arial.ttf
+  size {{input.format.h/36}}
+  yjustify center
+  Transform 1
+  box {{"clamp((int(ceil(input.format.w-input.format.h*\[value parent.MaskAR])/2))+(int(ceil(input.format.w/\[value parent.MaskAR])/32)), (int(ceil(input.format.w/40))), input.format.w)"} {input.format.h-input.format.h/20} {"input.format.w/2 + clamp((int(ceil(input.format.w-input.format.h*\[value parent.MaskAR])/2))+(int(ceil(input.format.w/\[value parent.MaskAR])/32)), (int(ceil(input.format.w/40))), input.format.w)"} {input.format.h-size-input.format.h/20}}
+  center {{curve} {input.format.h}}
+  name datum3
+  xpos 506
+  ypos 585
+  disable {{"\$gui"}}
+ }
+ Text {
+  message "\[value parent.topMiddle]"
+  font C:/Windows/Fonts/arial.ttf
+  size {{input.format.h/36}}
+  xjustify center
+  yjustify center
+  Transform 1
+  box {{input.format.w/4} {input.format.h-input.format.h/20} {input.format.w/2+input.format.w/4} {input.format.h-size-input.format.h/20}}
+  center {{curve} {input.format.h}}
+  name topMiddle1
+  xpos 506
+  ypos 669
+  disable {{"\$gui"}}
+ }
+ Dot {
+  name Dot4
+  xpos 540
+  ypos 751
+ }
+set N70e2d750 [stack 0]
+ Text {
+  opacity {{timecode}}
+  message "\[value parent.timecodeCustom]"
+  font C:/Windows/Fonts/arial.ttf
+  size {{input.format.h/36}}
+  xjustify center
+  yjustify center
+  Transform 1
+  box {{width/4} {size+height/20} {width/2+width/4} {height-height+height/20}}
+  center {1018 710}
+  name bottomMiddle5
+  xpos 506
+  ypos 879
+  disable {{"\$gui"}}
+ }
+push $N70e2d750
+ Text {
+  opacity {{timecode}}
+  message "\[metadata input/timecode]"
+  font C:/Windows/Fonts/arial.ttf
+  size {{input.format.h/36}}
+  xjustify center
+  yjustify center
+  Transform 1
+  box {{width/4} {size+height/20} {width/2+width/4} {height-height+height/20}}
+  center {1018 710}
+  name bottomMiddle
+  xpos 754
+  ypos 870
+  disable {{"\$gui"}}
+ }
+push $N70e2d750
+ Text {
+  opacity {{timecode}}
+  message "no TC found"
+  font C:/Windows/Fonts/arial.ttf
+  size {{input.format.h/36}}
+  xjustify center
+  yjustify center
+  Transform 1
+  box {{width/4} {size+height/20} {width/2+width/4} {height-height+height/20}}
+  center {1018 710}
+  name bottomMiddle6
+  xpos 607
+  ypos 875
+  disable {{"\$gui"}}
+ }
+ Switch {
+  inputs 2
+  which {{"\[if \{\[value bottomMiddle.message]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  name Switch5
+  xpos 607
+  ypos 978
+ }
+ Switch {
+  inputs 2
+  which {{"\[if \{\[value parent.timecodeCustom]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  name Switch6
+  xpos 506
+  ypos 978
+ }
+ Dot {
+  name Dot5
+  xpos 540
+  ypos 1046
+ }
+set N70e2f120 [stack 0]
+ Text {
+  opacity {{Name}}
+  message "\[value parent.nameCustom]"
+  font C:/Windows/Fonts/arial.ttf
+  size {{input.format.h/36}}
+  yjustify center
+  Transform 1
+  box {{"clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {size+height/20} {"width/2+clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {height/20}}
+  center {1018 710}
+  name name3
+  xpos 506
+  ypos 1139
+  disable {{"\$gui"}}
+ }
+push $N70e2f120
+ Text {
+  opacity {{Name}}
+  message "\[python nuke.thisNode().metadata(\"hiero/clip\", \[frame]).replace(\".\",\"_\")]"
+  font C:/Windows/Fonts/arial.ttf
+  size {{input.format.h/36}}
+  yjustify center
+  Transform 1
+  box {{"clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {size+height/20} {"width/2+clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {height/20}}
+  center {1018 710}
+  name name2
+  xpos 798
+  ypos 1132
+  disable {{"\$gui"}}
+ }
+ Switch {
+  inputs 2
+  which {{"\[if \{\[value parent.nameCustom]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  name Switch7
+  xpos 506
+  ypos 1258
+ }
+set N6feb1170 [stack 0]
+ Roto {
+  cliptype none
+  replace true
+  curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t
+     {"=input.format.w\ /\ 2"
+      {{0 x44800000}}}
+     {"=input.format.h\ /\ 2" 0}    0
+     {"=input.format.w\ /\ 2\ +-
+(
+clamp(
+(int
+(ceil
+(input.format.w\ -\ input.format.h\ *\ [value\ parent.MaskAR])\ /\ 2
+)
+)
++
+(int
+(ceil
+(input.format.w\ /\ [value\ parent.MaskAR])\ /\ 32
+)
+)
+,\ (int
+(ceil
+(input.format.w/40)
+)
+)
+,\ input.format.w
+)
++
+ceil(input.format.h\ /\ 34)
+)"
+      {{0 x44800000}}}
+     {"=input.format.h\ /\ 2\ -\ ceil(input.format.h/17.5)"
+      {{0 0}}}    0 0 0 0
+     {=(int((input.format.h/9500)*100))/100/input.pixel_aspect
+      {{0 1}}}
+     {=(int((input.format.h/9500)*100))/100
+      {{0 1}}}}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Shape15 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x44926798 x4385e540}
+        {x3fc54000 xc0837800}
+        {xc0768000 x40038800}
+        {x44936bc8 x43815160}
+        {x40769000 xbffbf000}
+        {xc093e800 x3e838000}
+        {x449503d8 x437f3440}
+        {x4093f000 xbe830000}
+        {xc0710000 xbf8e7000}
+        {x449696b8 x43803340}
+        {x40838000 x3f8e7000}
+        {xc02f4000 xc02f5000}
+        {x4497df18 x438311a0}
+        {x4029e000 x4029d800}
+        {xbe300000 xc088f400}
+        {x44986858 x438849e0}
+        {0 x4096a800}
+        {x400e7000 xc0195800}
+        {x4497fd68 x438d9920}
+        {xc00e7000 x4013e800}
+        {x4060a000 xbf714000}
+        {x4496eb58 x43900a20}
+        {xc060a000 x3f710000}
+        {x407c0000 xbedb0000}
+        {x44958798 x43910580}
+        {xc093f000 x3edb0000}
+        {x4060a000 xbfaf4000}
+        {x44940288 x439258e0}
+        {xc0609000 x3faf6000}
+        {x3dae0000 xc0863800}
+        {x449355e8 x43967f60}
+        {x3dae0000 x4029e000}
+        {xbfe60000 xbfe60000}
+        {x4493b008 x4399cb20}
+        {x3fe64000 x3fdb2000}
+        {xc034d000 xbf450000}
+        {x449490d8 x439bada0}
+        {x402f5000 x3f452000}
+        {xc04ac000}
+        {x4495ab08 x439c46c0}
+        {x404ab000}
+        {xc034d000 x3f8e9000}
+        {x4496c808 x439b6c00}
+        {x402f5000 xbf8e6000}
+        {xbfd04000 x4029d000}
+        {x44979ad8 x439898c0}
+        {}
+        {}
+        {x44983c98 x439a39c0}
+        {xbfdb2000 x4060a000}
+        {x40660000 xbfc53000}
+        {x44973da8 x439e13e0}
+        {xc0663000 x3fd04000}
+        {x40863800 xbdae0000}
+        {x4495c938 x439f5c00}
+        {xc0863800 x3db10000}
+        {x405b3000 x3f70e000}
+        {x44945ca8 x439eb7c0}
+        {xc0837000 xbf995000}
+        {x402f5000 x402f4800}
+        {x44931448 x439bc380}
+        {xc029c000 xc02f5800}
+        {x3e300000 x408bb800}
+        {x44928b08 x439675e0}
+        {0 xc0996000}
+        {xc00e6000 x4013e800}
+        {x4492f618 x43912680}
+        {x40091000 xc013f000}
+        {xc05b2000 x3f5b4000}
+        {x44940528 x438ec200}
+        {x4060a000 xbf5b0000}
+        {xc07c1000 x3edb0000}
+        {x44956968 x438dc4e0}
+        {x4093e800 xbedb0000}
+        {xc060a000 x3faf6000}
+        {x4496ee38 x438c71a0}
+        {x4060a000 xbfaf6000}
+        {xbdae0000 x40863c00}
+        {x44979ad8 x438849e0}
+        {xbdae0000 xc0245800}
+        {x3fe64000 x3fdb3000}
+        {x44974088 x43852060}
+        {xbfe62000 xbfdb2000}
+        {x4034d000 x3f450000}
+        {x44965fc8 x43834880}
+        {xc029c000 xbf452000}
+        {x4060a000}
+        {x44953808 x4382ba20}
+        {xc060a000}
+        {x404ac000 xbfba4000}
+        {x4493f798 x4383d680}
+        {xc04ab000 x3fba5000}
+        {x3fd02000 xc0609800}
+        {x44931168 x43879ac0}
+        {}
+        {}
+        {x44926798 x4385e540}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {x3fc54000 xc0837800}
+        {xc0768000 x40038800}
+        {}
+        {x40769000 xbffbf000}
+        {xc093e800 x3e838000}
+        {}
+        {x4093f000 xbe830000}
+        {xc0710000 xbf8e7000}
+        {}
+        {x40838000 x3f8e7000}
+        {xc02f4000 xc02f5000}
+        {}
+        {x4029e000 x4029d800}
+        {xbe300000 xc088f400}
+        {}
+        {0 x4096a800}
+        {x400e7000 xc0195800}
+        {}
+        {xc00e7000 x4013e800}
+        {x4060a000 xbf714000}
+        {}
+        {xc060a000 x3f710000}
+        {x407c0000 xbedb0000}
+        {}
+        {xc093f000 x3edb0000}
+        {x4060a000 xbfaf4000}
+        {}
+        {xc0609000 x3faf6000}
+        {x3dae0000 xc0863800}
+        {}
+        {x3dae0000 x4029e000}
+        {xbfe60000 xbfe60000}
+        {}
+        {x3fe64000 x3fdb2000}
+        {xc034d000 xbf450000}
+        {}
+        {x402f5000 x3f452000}
+        {xc04ac000}
+        {}
+        {x404ab000}
+        {xc034d000 x3f8e9000}
+        {}
+        {x402f5000 xbf8e6000}
+        {xbfd04000 x4029d000}
+        {}
+        {}
+        {}
+        {}
+        {xbfdb2000 x4060a000}
+        {x40660000 xbfc53000}
+        {}
+        {xc0663000 x3fd04000}
+        {x40863800 xbdae0000}
+        {}
+        {xc0863800 x3db10000}
+        {x405b3000 x3f70e000}
+        {}
+        {xc0837000 xbf995000}
+        {x402f5000 x402f4800}
+        {}
+        {xc029c000 xc02f5800}
+        {x3e300000 x408bb800}
+        {}
+        {0 xc0996000}
+        {xc00e6000 x4013e800}
+        {}
+        {x40091000 xc013f000}
+        {xc05b2000 x3f5b4000}
+        {}
+        {x4060a000 xbf5b0000}
+        {xc07c1000 x3edb0000}
+        {}
+        {x4093e800 xbedb0000}
+        {xc060a000 x3faf6000}
+        {}
+        {x4060a000 xbfaf6000}
+        {xbdae0000 x40863c00}
+        {}
+        {xbdae0000 xc0245800}
+        {x3fe64000 x3fdb3000}
+        {}
+        {xbfe62000 xbfdb2000}
+        {x4034d000 x3f450000}
+        {}
+        {xc029c000 xbf452000}
+        {x4060a000}
+        {}
+        {xc060a000}
+        {x404ac000 xbfba4000}
+        {}
+        {xc04ab000 x3fba5000}
+        {x3fd02000 xc0609800}
+        {}
+        {}
+        {}
+        {}
+        {}}}}
+     {tx 0 x4405b666 x42e0cccd}
+     {a str 1 ss 0}}
+    {curvegroup Shape14 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x448bf408 x43964a20}
+        {x3e2f0000 x405b2800}
+        {xc05b2000 xbfe61000}
+        {x448ca038 x439a39c0}
+        {x405b2000 x3fe61000}
+        {xc08e7000}
+        {x448e1a58 x439b97c0}
+        {x408e7000}
+        {xc055b000 x3ffbf000}
+        {x448f9478 x439a2f00}
+        {x405b3000 xbff12000}
+        {xbe300000 x4080bc00}
+        {x44904118 x4395c6e0}
+        {}
+        {}
+        {x44904118 x4387b0c0}
+        {xbdae0000 xc01ed800}
+        {x3fe64000 x3fd04000}
+        {x448fe678 x43849d20}
+        {xbfe60000 xbfd04000}
+        {x4034c000 x3f454000}
+        {x448f0898 x4382d000}
+        {xbf8e6000 xbeafc000}
+        {x3f998000 x3e2f8000}
+        {x448e95c8 x43827880}
+        {xbfa46000 xbe2f8000}
+        {x3fa42000}
+        {x448e1a58 x438262a0}
+        {xc02f6000}
+        {x4029d000 xbf710000}
+        {x448d1908 x438311a0}
+        {xc029d000 x3f70e000}
+        {x3fe62000 xbffc1000}
+        {x448c4618 x43853640}
+        {xbfdb2000 x3ffbf000}
+        {x3db20000 xc04ab800}
+        {x448bee18 x43891000}
+        {}
+        {}
+        {x448bee18 x43964a20}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {x3e2f0000 x405b2800}
+        {xc05b2000 xbfe61000}
+        {}
+        {x405b2000 x3fe61000}
+        {xc08e7000}
+        {}
+        {x408e7000}
+        {xc055b000 x3ffbf000}
+        {}
+        {x405b3000 xbff12000}
+        {xbe300000 x4080bc00}
+        {}
+        {}
+        {}
+        {}
+        {xbdae0000 xc01ed800}
+        {x3fe64000 x3fd04000}
+        {}
+        {xbfe60000 xbfd04000}
+        {x4034c000 x3f454000}
+        {}
+        {xbf8e6000 xbeafc000}
+        {x3f998000 x3e2f8000}
+        {}
+        {xbfa46000 xbe2f8000}
+        {x3fa42000}
+        {}
+        {xc02f6000}
+        {x4029d000 xbf710000}
+        {}
+        {xc029d000 x3f70e000}
+        {x3fe62000 xbffc1000}
+        {}
+        {xbfdb2000 x3ffbf000}
+        {x3db20000 xc04ab800}
+        {}
+        {}
+        {}
+        {}
+        {}}}}
+     {tx 0 x43e94000 x42de8000}
+     {a r 0 g 0 b 0 a 0 str 1 ss 0}}
+    {curvegroup Shape13 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x448b2658 x43ac5f40}
+        {0 xc1ec4100}
+        {0 x41eda000}
+        {x448b2658 x437fe340}
+        {}
+        {}
+        {x448be3a8 x437fe340}
+        {}
+        {}
+        {x448be3a8 x43836920}
+        {x3fdb2000 xc0196000}
+        {xc03fc000 x3fa46000}
+        {x448cc6f8 x4380a260}
+        {x403fb000 xbfa45000}
+        {xc060a000 x3e83c000}
+        {x448dfef8 x437edcc0}
+        {x4060a000 xbe838000}
+        {xc04ac000 xbf454000}
+        {x448f3f48 x437fb780}
+        {x40863000 x3f8e6000}
+        {xc02f5000 xc029e000}
+        {x44908b08 x4382a440}
+        {x4029c000 x4029e000}
+        {xbdac0000 xc0837800}
+        {x449110e8 x4387bd20}
+        {}
+        {}
+        {x449110e8 x4395ba80}
+        {xbe2f0000 x4096a800}
+        {x404aa000 xc03a4800}
+        {x44907258 x439b6c00}
+        {xc04ab000 x403a4800}
+        {x4093f000 xbf838000}
+        {x448efda8 x439e5580}
+        {xc093e800 x3f838000}
+        {x408e7000 x3f70e000}
+        {x448d4a38 x439e5580}
+        {xc08e7800 xbf838000}
+        {x402f4000 x40453000}
+        {x448bf108 x439b4b60}
+        {}
+        {}
+        {x448bf108 x43ac6a00}
+        {}
+        {}
+        {x448b2658 x43ac6a00}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {0 xc1ec4100}
+        {0 x41eda000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {x3fdb2000 xc0196000}
+        {xc03fc000 x3fa46000}
+        {}
+        {x403fb000 xbfa45000}
+        {xc060a000 x3e83c000}
+        {}
+        {x4060a000 xbe838000}
+        {xc04ac000 xbf454000}
+        {}
+        {x40863000 x3f8e6000}
+        {xc02f5000 xc029e000}
+        {}
+        {x4029c000 x4029e000}
+        {xbdac0000 xc0837800}
+        {}
+        {}
+        {}
+        {}
+        {xbe2f0000 x4096a800}
+        {x404aa000 xc03a4800}
+        {}
+        {xc04ab000 x403a4800}
+        {x4093f000 xbf838000}
+        {}
+        {xc093e800 x3f838000}
+        {x408e7000 x3f70e000}
+        {}
+        {xc08e7800 xbf838000}
+        {x402f4000 x40453000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}}}}
+     {tx 0 x43e95333 x42fee666}
+     {a str 1 ss 0}}
+    {curvegroup Shape12 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x44881f18 x4387a740}
+        {xbdac0000 xc029c800}
+        {x3ff14000 x3fc54000}
+        {x4487bf78 x43847ae0}
+        {xbff10000 xbfc53000}
+        {x4029e000 x3f2f2000}
+        {x4486e438 x4382d000}
+        {xc029c000 xbf2f4000}
+        {x400e6000}
+        {x4485f8c8 x438257e0}
+        {xc029e000}
+        {x4013f000 xbf196000}
+        {x44850a48 x4382c540}
+        {xc080b800 x3fa46000}
+        {x3fc54000 xc034c000}
+        {x4483fe08 x4385da20}
+        {xbfc56000 x4034d000}
+        {xbf454000 xc04aa800}
+        {x4483d778 x438a6340}
+        {x3f454000 x404ab800}
+        {xc03a4000 xc00e6800}
+        {x44848998 x438e6a80}
+        {x40711000 x401ee800}
+        {xc0a9d800 xbe838000}
+        {x44863d08 x43906c60}
+        {x40a9d000 x3e2f0000}
+        {xc09c1800 x3fa46000}
+        {x44882488 x438f9cc0}
+        {}
+        {}
+        {x44882488 x4387a740}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {xbdac0000 xc029c800}
+        {x3ff14000 x3fc54000}
+        {}
+        {xbff10000 xbfc53000}
+        {x4029e000 x3f2f2000}
+        {}
+        {xc029c000 xbf2f4000}
+        {x400e6000}
+        {}
+        {xc029e000}
+        {x4013f000 xbf196000}
+        {}
+        {xc080b800 x3fa46000}
+        {x3fc54000 xc034c000}
+        {}
+        {xbfc56000 x4034d000}
+        {xbf454000 xc04aa800}
+        {}
+        {x3f454000 x404ab800}
+        {xc03a4000 xc00e6800}
+        {}
+        {x40711000 x401ee800}
+        {xc0a9d800 xbe838000}
+        {}
+        {x40a9d000 x3e2f0000}
+        {xc09c1800 x3fa46000}
+        {}
+        {}
+        {}
+        {}
+        {}}}}
+     {t x43c36666 x42c44ccd
+   {{0 0}}  0 0
+   {{0 0}}
+   {{0 0}}
+   {{0 0}}  0 1 1
+   {{0 1}}  0 0
+   {{0 0}}
+   {{0 0}}
+   {{0 0}}
+   {{0 0}}
+   {{0 0}}}
+     {a r 0 g 0 b 0 a 0 str 1 ss 0}}
+    {curvegroup Shape11 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x44881f18 x43927b20}
+        {xc0caa800 x3f998000}
+        {x40b78800 x3f03a000}
+        {x4485da98 x4392fe60}
+        {xc0b78800 xbf036000}
+        {x4080c000 x4029e000}
+        {x448405d8 x4390a340}
+        {xc088f800 xc03fb800}
+        {x3f714000 x4093e800}
+        {x44830a48 x438ae680}
+        {xbf710000 xc096a400}
+        {xc013e000 x40863800}
+        {x44834be8 x43843940}
+        {x40196000 xc088f000}
+        {xc0b78800 x3fe61000}
+        {x4484d0b8 x437f7640}
+        {x3fc56000 xbeaf0000}
+        {xbfc54000 x3e834000}
+        {x448564a8 x437e8540}
+        {x3fc52000 xbe838000}
+        {xbfc54000}
+        {x4485f8c8 x437e2dc0}
+        {x404aa000 xbdae0000}
+        {xc04ac000 xbf70e000}
+        {x448728b8 x437f7640}
+        {x404ab000 x3f714000}
+        {xc02f4000 xc0246800}
+        {x44884558 x438257e0}
+        {x3f714000 xbffc1000}
+        {xbffbe000 x3f454000}
+        {x4488d138 x43804920}
+        {x3ffc0000 xbf452000}
+        {xc029d000 xbe2f0000}
+        {x4489af18 x437fa200}
+        {}
+        {}
+        {x4489af18 x4382a440}
+        {xbfd02000 xbdae0000}
+        {x3f998000 xbf5b4000}
+        {x44892658 x43833d60}
+        {xbf994000 x3f5b0000}
+        {0 xc013f800}
+        {x4488e9e8 x43859880}
+        {}
+        {}
+        {x4488e9e8 x43963440}
+        {0 x3fdb3000}
+        {x3edb8000 xbfd04000}
+        {x4488d6a8 x4398aea0}
+        {xbedb8000 x3fc53000}
+        {x3f70c000 xbfba4000}
+        {x44889508 x439af3e0}
+        {xc008f000 x403a4800}
+        {x407c1000 xbfaf5000}
+        {x44876fe8 x439e1ea0}
+        {xc07bf000 x3faf3000}
+        {x408e7000 x3db10000}
+        {x4485dd38 x439f0f40}
+        {xc08e6800 xbdae0000}
+        {x40769000 x3fc53000}
+        {x44845018 x439dd240}
+        {xc0769000 xbfc53000}
+        {x3ffc0000 x403fc000}
+        {x44833b58 x439a6580}
+        {}
+        {}
+        {x4483e7e8 x4398aea0}
+        {x3faf6000 x3ffc0000}
+        {xc0038000 xbf836000}
+        {x44848c38 x439ae8c0}
+        {x40038000 x3f838000}
+        {xc013e000 xbedb0000}
+        {x44855c88 x439bfa60}
+        {x3fdb2000 x3e834000}
+        {xbfd02000}
+        {x4485fe48 x439c30e0}
+        {x3fd02000}
+        {xbfdb4000 x3eaf8000}
+        {x44869cf8 x439bfa60}
+        {x4013e000 xbedb0000}
+        {xbfe60000 x3f838000}
+        {x44876208 x439ae8c0}
+        {x3fe62000 xbf70e000}
+        {xbf836000 x3fba5000}
+        {x4487edd8 x439912a0}
+        {x3f198000 xbf454000}
+        {xbe838000 x3f70e000}
+        {x44881428 x4397d3e0}
+        {x3e840000 xbf5b4000}
+        {0 x3f714000}
+        {x44881f18 x439675e0}
+        {}
+        {}
+        {x44881f18 x43927b20}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {xc0caa800 x3f998000}
+        {x40b78800 x3f03a000}
+        {}
+        {xc0b78800 xbf036000}
+        {x4080c000 x4029e000}
+        {}
+        {xc088f800 xc03fb800}
+        {x3f714000 x4093e800}
+        {}
+        {xbf710000 xc096a400}
+        {xc013e000 x40863800}
+        {}
+        {x40196000 xc088f000}
+        {xc0b78800 x3fe61000}
+        {}
+        {x3fc56000 xbeaf0000}
+        {xbfc54000 x3e834000}
+        {}
+        {x3fc52000 xbe838000}
+        {xbfc54000}
+        {}
+        {x404aa000 xbdae0000}
+        {xc04ac000 xbf70e000}
+        {}
+        {x404ab000 x3f714000}
+        {xc02f4000 xc0246800}
+        {}
+        {x3f714000 xbffc1000}
+        {xbffbe000 x3f454000}
+        {}
+        {x3ffc0000 xbf452000}
+        {xc029d000 xbe2f0000}
+        {}
+        {}
+        {}
+        {}
+        {xbfd02000 xbdae0000}
+        {x3f998000 xbf5b4000}
+        {}
+        {xbf994000 x3f5b0000}
+        {0 xc013f800}
+        {}
+        {}
+        {}
+        {}
+        {0 x3fdb3000}
+        {x3edb8000 xbfd04000}
+        {}
+        {xbedb8000 x3fc53000}
+        {x3f70c000 xbfba4000}
+        {}
+        {xc008f000 x403a4800}
+        {x407c1000 xbfaf5000}
+        {}
+        {xc07bf000 x3faf3000}
+        {x408e7000 x3db10000}
+        {}
+        {xc08e6800 xbdae0000}
+        {x40769000 x3fc53000}
+        {}
+        {xc0769000 xbfc53000}
+        {x3ffc0000 x403fc000}
+        {}
+        {}
+        {}
+        {}
+        {x3faf6000 x3ffc0000}
+        {xc0038000 xbf836000}
+        {}
+        {x40038000 x3f838000}
+        {xc013e000 xbedb0000}
+        {}
+        {x3fdb2000 x3e834000}
+        {xbfd02000}
+        {}
+        {x3fd02000}
+        {xbfdb4000 x3eaf8000}
+        {}
+        {x4013e000 xbedb0000}
+        {xbfe60000 x3f838000}
+        {}
+        {x3fe62000 xbf70e000}
+        {xbf836000 x3fba5000}
+        {}
+        {x3f198000 xbf454000}
+        {xbe838000 x3f70e000}
+        {}
+        {x3e840000 xbf5b4000}
+        {0 x3f714000}
+        {}
+        {}
+        {}
+        {}
+        {}}}}
+     {tx 0 x43c52000 x42dee666}
+     {a str 1 ss 0}}
+    {curvegroup Shape10 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x448223d8 x438283a0}
+        {xc0502000 xbdae0000}
+        {x3fba4000 xbf8e8000}
+        {x44814078 x43834880}
+        {xbfba4000 x3f8e8000}
+        {0 xc04ab800}
+        {x4480fc38 x43868920}
+        {}
+        {}
+        {x4480fc38 x43ac2860}
+        {}
+        {}
+        {x44803168 x43ac2860}
+        {}
+        {}
+        {x44803168 x43869f00}
+        {0 xc0b20c00}
+        {xc0244000 x40037800}
+        {x4480aca8 x4380ed60}
+        {x40247000 xc0037000}
+        {xc0a46000 xbedb0000}
+        {x44822178 x437f6000}
+        {}
+        {}
+        {x44822178 x438283a0}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {xc0502000 xbdae0000}
+        {x3fba4000 xbf8e8000}
+        {}
+        {xbfba4000 x3f8e8000}
+        {0 xc04ab800}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {0 xc0b20c00}
+        {xc0244000 x40037800}
+        {}
+        {x40247000 xc0037000}
+        {xc0a46000 xbedb0000}
+        {}
+        {}
+        {}
+        {}
+        {}}}}
+     {tx 0 x43acd99a x42fee666}
+     {a str 1 ss 0}}
+    {curvegroup Shape9 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x446480b0 x437eb100}
+        {}
+        {}
+        {x44699870 x43885640}
+        {x3ff10000 x3fdb2000}
+        {xbf2f4000 xbfe61000}
+        {x446a8ef0 x438af140}
+        {x3f2f8000 x3fe62000}
+        {x3dae0000 xc013f000}
+        {x446acb30 x438e1140}
+        {}
+        {}
+        {x446acb30 x43ac3380}
+        {}
+        {}
+        {x44679b10 x43ac3380}
+        {}
+        {}
+        {x44679b10 x438f0d20}
+        {x3dae0000 xbfc53000}
+        {x3e840000 x3f5b4000}
+        {x44678530 x438d41a0}
+        {xbe830000 xbf5b2000}
+        {x3f998000 x3f8e9000}
+        {x4466fbb0 x438bcdc0}
+        {}
+        {}
+        {x44642930 x438605e0}
+        {}
+        {}
+        {x44611430 x438bcdc0}
+        {xbf996000 x3f8e9000}
+        {x3e838000 xbf5b2000}
+        {x4460ccd0 x438d41a0}
+        {xbe838000 x3f5b4000}
+        {0 xbfd04000}
+        {x4460b6f0 x438f0d20}
+        {}
+        {}
+        {x4460b6f0 x43ac3380}
+        {}
+        {}
+        {x445d86d0 x43ac3380}
+        {}
+        {}
+        {x445d86d0 x438e1140}
+        {0 xc0196800}
+        {xbf2f4000 x3fe62000}
+        {x445dc2b0 x438af140}
+        {x3f2f4000 xbfe61000}
+        {xbff0e000 x3fd04000}
+        {x445eb990 x43885640}
+        {}
+        {}
+        {x4463d0b0 x437eb100}
+        {}
+        {}
+        {x446480b0 x437eb100}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {}
+        {}
+        {}
+        {x3ff10000 x3fdb2000}
+        {xbf2f4000 xbfe61000}
+        {}
+        {x3f2f8000 x3fe62000}
+        {x3dae0000 xc013f000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {x3dae0000 xbfc53000}
+        {x3e840000 x3f5b4000}
+        {}
+        {xbe830000 xbf5b2000}
+        {x3f998000 x3f8e9000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {xbf996000 x3f8e9000}
+        {x3e838000 xbf5b2000}
+        {}
+        {xbe838000 x3f5b4000}
+        {0 xbfd04000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {0 xc0196800}
+        {xbf2f4000 x3fe62000}
+        {}
+        {x3f2f4000 xbfe61000}
+        {xbff0e000 x3fd04000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}}}}
+     {tx 0 x434cb333 x42fe3333}
+     {a str 1 ss 0}}
+    {curvegroup Shape8 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x4445a4b0 x438631a0}
+        {xc029d000}
+        {0 xc0eb9000}
+        {x4442d1d0 x438a6340}
+        {}
+        {}
+        {x4442d1d0 x43ac3380}
+        {}
+        {}
+        {x443fa130 x43ac3380}
+        {0 xc13a4600}
+        {0 x413a4200}
+        {x443fa130 x439ac820}
+        {0 xc13a4200}
+        {0 x4138e600}
+        {x443fa130 x43895cc0}
+        {x3db00000 xc093ec00}
+        {xc00e7000 x4034d000}
+        {x444081b0 x4383c0a0}
+        {x4013e000 xc034c800}
+        {xc06b9000 x3f996000}
+        {x4442bbf0 x4380c1c0}
+        {x40662000 xbf998000}
+        {xc0838000}
+        {x4445a4b0 x437fb780}
+        {}
+        {}
+        {x444a3ed0 x437fb780}
+        {}
+        {}
+        {x444a3ed0 x43863cc0}
+        {}
+        {}
+        {x4445a4b0 x43863cc0}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {xc029d000}
+        {0 xc0eb9000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {0 xc13a4600}
+        {0 x413a4200}
+        {}
+        {0 xc13a4200}
+        {0 x4138e600}
+        {}
+        {x3db00000 xc093ec00}
+        {xc00e7000 x4034d000}
+        {}
+        {x4013e000 xc034c800}
+        {xc06b9000 x3f996000}
+        {}
+        {x40662000 xbf998000}
+        {xc0838000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}}}}
+     {tx 0 x426b3333 x42ff6666}
+     {a str 1 ss 0}}
+    {curvegroup Shape6 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x445072f0 x43a5d280}
+        {xbfba4000 xbf5b2000}
+        {0 x40503000}
+        {x444fc990 x43a27c00}
+        {}
+        {}
+        {x444fc990 x439675e0}
+        {}
+        {}
+        {x4456e450 x439675e0}
+        {}
+        {}
+        {x4456e450 x43a27c00}
+        {0 x4060a800}
+        {x3fc56000 xbf5b2000}
+        {x44562fb0 x43a5d280}
+        {xc09ee000 x4029d800}
+        {x40996800 x40245800}
+        {x445072f0 x43a5d280}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {xbfba4000 xbf5b2000}
+        {0 x40503000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {0 x4060a800}
+        {x3fc56000 xbf5b2000}
+        {}
+        {xc09ee000 x4029d800}
+        {x40996800 x40245800}
+        {}
+        {}}}}
+     {tx 0 x42fc3333 x4312a666}
+     {a r 0 g 0 b 0 str 1 ss 0 a 0}}
+    {curvegroup Shape7 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x44580c30 x43aa9220}
+        {x40198000 xbfaf3000}
+        {xbfaf4000 x400e6800}
+        {x44597630 x43a7e140}
+        {x3faf6000 xc00e6000}
+        {0 x403fc000}
+        {x4459feb0 x43a405e0}
+        {}
+        {}
+        {x445a0450 x437fa200}
+        {}
+        {}
+        {x4456d970 x437fa200}
+        {}
+        {}
+        {x4456d970 x4390a340}
+        {}
+        {}
+        {x444fbeb0 x4390a340}
+        {}
+        {}
+        {x444fbeb0 x43888200}
+        {}
+        {}
+        {x444fbeb0 x437fa200}
+        {}
+        {}
+        {x444c9eb0 x437fa200}
+        {}
+        {}
+        {x444c9eb0 x4391eb60}
+        {}
+        {}
+        {x444c9eb0 x43a405e0}
+        {0 x403a4800}
+        {xbfaf4000 xc00e6000}
+        {x444d2730 x43a7e140}
+        {x3faf6000 x400e6800}
+        {xc013f000 xbfaf3000}
+        {x444e9150 x43aa9220}
+        {x40503000 x3ff12000}
+        {xc096a800 xbf196000}
+        {x44518a90 x43ac6a00}
+        {x4096a800 x3f198000}
+        {xc096a000 x3f198000}
+        {x445512b0 x43ac6a00}
+        {x40996800 xbf196000}
+        {xc04ab000 x3ff12000}
+        {x44580c30 x43aa9220}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {x40198000 xbfaf3000}
+        {xbfaf4000 x400e6800}
+        {}
+        {x3faf6000 xc00e6000}
+        {0 x403fc000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {0 x403a4800}
+        {xbfaf4000 xc00e6000}
+        {}
+        {x3faf6000 x400e6800}
+        {xc013f000 xbfaf3000}
+        {}
+        {x40503000 x3ff12000}
+        {xc096a800 xbf196000}
+        {}
+        {x4096a800 x3f198000}
+        {xc096a000 x3f198000}
+        {}
+        {x40996800 xbf196000}
+        {xc04ab000 x3ff12000}
+        {}
+        {}}}}
+     {tx 0 x42fc0000 x42ffcccd}
+     {a str 1 ss 0}}
+    {curvegroup Shape4 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x44720190 x43a5d280}
+        {xbfba4000 xbf5b2000}
+        {0 x40503000}
+        {x44715730 x43a27c00}
+        {}
+        {}
+        {x44715730 x439675e0}
+        {}
+        {}
+        {x447871f0 x439675e0}
+        {}
+        {}
+        {x447871f0 x43a27c00}
+        {0 x4060a800}
+        {x3fc54000 xbf5b2000}
+        {x4477bdb0 x43a5d280}
+        {xc09c2800 x4029d800}
+        {x409c2000 x40245800}
+        {x44720190 x43a5d280}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {xbfba4000 xbf5b2000}
+        {0 x40503000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {0 x4060a800}
+        {x3fc54000 xbf5b2000}
+        {}
+        {xc09c2800 x4029d800}
+        {x409c2000 x40245800}
+        {}
+        {}}}}
+     {tx 0 x438d7333 x4312a666}
+     {a r 0 g 0 b 0 str 1 ss 0 a 0}}
+    {curvegroup Shape5 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x44799a50 x43aa9220}
+        {x40197000 xbfaf3000}
+        {xbfaf2000 x400e6800}
+        {x447b03d0 x43a7e140}
+        {x3faf6000 xc00e6000}
+        {0 x403fc000}
+        {x447b8cb0 x43a405e0}
+        {}
+        {}
+        {x447b91f0 x437fa200}
+        {}
+        {}
+        {x44786710 x437fa200}
+        {}
+        {}
+        {x44786710 x4390a340}
+        {}
+        {}
+        {x44714c50 x4390a340}
+        {}
+        {}
+        {x44714c50 x43888200}
+        {}
+        {}
+        {x44714c50 x437fa200}
+        {}
+        {}
+        {x446e2150 x437fa200}
+        {}
+        {}
+        {x446e2150 x4391eb60}
+        {}
+        {}
+        {x446e2150 x43a405e0}
+        {0 x403a4800}
+        {xbfaf4000 xc00e6000}
+        {x446eaad0 x43a7e140}
+        {x3faf6000 x400e6800}
+        {xc013e000 xbfaf3000}
+        {x44701450 x43aa9220}
+        {x40503000 x3ff12000}
+        {xc096a000 xbf196000}
+        {x44730df0 x43ac6a00}
+        {x4096a800 x3f198000}
+        {xc096a800 x3f198000}
+        {x44769570 x43ac6a00}
+        {x409ee000 xbf196000}
+        {xc04aa000 x3ff12000}
+        {x44799a50 x43aa9220}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {x40197000 xbfaf3000}
+        {xbfaf2000 x400e6800}
+        {}
+        {x3faf6000 xc00e6000}
+        {0 x403fc000}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {0 x403a4800}
+        {xbfaf4000 xc00e6000}
+        {}
+        {x3faf6000 x400e6800}
+        {xc013e000 xbfaf3000}
+        {}
+        {x40503000 x3ff12000}
+        {xc096a000 xbf196000}
+        {}
+        {x4096a800 x3f198000}
+        {xc096a800 x3f198000}
+        {}
+        {x409ee000 xbf196000}
+        {xc04aa000 x3ff12000}
+        {}
+        {}}}}
+     {tx 0 x438d599a x42ffcccd}
+     {a str 1 ss 0}}
+    {curvegroup Shape3 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x44729ab0 x443bc5a0}
+        {}
+        {}
+        {x447df7b0 x443bc5a0}
+        {}
+        {}
+        {x447df7b0 x441b9690}
+        {0 xc1bfbe00}
+        {xc1912c00}
+        {x44814078 x4415ae10}
+        {}
+        {}
+        {x44882768 x4415ae10}
+        {}
+        {}
+        {x44882768 x440a8d00}
+        {}
+        {}
+        {x447bbdb0 x440a8d00}
+        {xc1fe0e00}
+        {0 xc1f31a00}
+        {x44729ab0 x441722f0}
+        {}
+        {}
+        {x44729ab0 x443bc5a0}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {0 xc1bfbe00}
+        {xc1912c00}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {xc1fe0e00}
+        {0 xc1f31a00}
+        {}
+        {}
+        {}
+        {}
+        {}}}}
+     {tx 0 x43aacccd x4406e666}
+     {a str 1 ss 0}}
+    {curvegroup Shape2 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x44648bb0 x443bc5a0}
+        {}
+        {}
+        {x446f9b70 x443bc5a0}
+        {}
+        {}
+        {x446f9b70 x44137ef0}
+        {0 xc2305600}
+        {xc1837c00}
+        {x447b0eb0 x440798c0}
+        {}
+        {}
+        {x44882768 x440798c0}
+        {}
+        {}
+        {x44882768 x43f9aae0}
+        {}
+        {}
+        {x44785130 x43f9aae0}
+        {xc23eb700}
+        {0 xc23d5880}
+        {x44648bb0 x4411d380}
+        {}
+        {}
+        {x44648bb0 x443bc5a0}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {0 xc2305600}
+        {xc1837c00}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {}
+        {xc23eb700}
+        {0 xc23d5880}
+        {}
+        {}
+        {}
+        {}
+        {}}}}
+     {tx 0 x439a6000 x43fdc666}
+     {a str 1 ss 0}}
+    {curvegroup Shape1 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x445093b0 x44470230}
+        {xc10a5400}
+        {0 x410a5600}
+        {x444ca990 x444317a0}
+        {}
+        {}
+        {x444ca990 x43e7d200}
+        {0 xc10a5200}
+        {xc10a5400}
+        {x445093b0 x43dffd20}
+        {}
+        {}
+        {x448fe108 x43dffd20}
+        {x410a5400}
+        {0 xc10a5200}
+        {x4491d668 x43e7d200}
+        {}
+        {}
+        {x4491d668 x444317a0}
+        {0 x410a5600}
+        {x410a5400}
+        {x448fe108 x44470230}
+        {}
+        {}
+        {x445093b0 x44470230}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {xc10a5400}
+        {0 x410a5600}
+        {}
+        {}
+        {}
+        {}
+        {0 xc10a5200}
+        {xc10a5400}
+        {}
+        {}
+        {}
+        {}
+        {x410a5400}
+        {0 xc10a5200}
+        {}
+        {}
+        {}
+        {}
+        {0 x410a5600}
+        {x410a5400}
+        {}
+        {}
+        {}
+        {}
+        {}}}}
+     {tx 0 x4395199a x43fbe666}
+     {a r 0 g 0 b 0 a 0 str 1 ss 0 bm x40000000}}
+    {curvegroup Shape0 512 bezier
+     {{cc
+       {f 8192}
+       {p
+        {}
+        {x44591db0 x4453ff30}
+        {}
+        {}
+        {x448b9698 x4453ff30}
+        {x4260f500}
+        {0 x4260f580}
+        {x44985278 x443a87e0}
+        {}
+        {}
+        {x44985278 x43f8f260}
+        {0 xc2614d00}
+        {x4260f500}
+        {x448b9698 x43c601c0}
+        {}
+        {}
+        {x44591db0 x43c601c0}
+        {xc2614c00}
+        {0 xc260f580}
+        {x443fa6f0 x43f8f260}
+        {}
+        {}
+        {x443fa6f0 x443a87e0}
+        {xa8c00000 x4260f580}
+        {xc260f400}
+        {x44591db0 x4453ff30}
+        {}}}
+      {cc
+       {f 8192}
+       {p
+        {}
+        {}
+        {}
+        {}
+        {}
+        {x4260f500}
+        {0 x4260f580}
+        {}
+        {}
+        {}
+        {}
+        {0 xc2614d00}
+        {x4260f500}
+        {}
+        {}
+        {}
+        {}
+        {xc2614c00}
+        {0 xc260f580}
+        {}
+        {}
+        {}
+        {}
+        {xa8c00000 x4260f580}
+        {xc260f400}
+        {}
+        {}}}}
+     {tx 0 x43950ccd x43fbe666}
+     {a str 1 ss 0}}}}}}
+  toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+  toolbar_autokey false
+  toolbar_brush_hardness 0.200000003
+  toolbar_source_transform_scale {1 1}
+  toolbar_source_transform_center {1024 778}
+  colorOverlay {0 0 0 0}
+  lifetime_type "all frames"
+  view {}
+  motionblur_on true
+  motionblur_shutter_offset_type centred
+  name Logo
+  xpos 638
+  ypos 1309
+ }
+push $N6feb1170
+ Merge2 {
+  inputs 2
+  mix {{Logo}}
+  name Merge1
+  xpos 506
+  ypos 1332
+ }
+ Dot {
+  name Dot8
+  xpos 540
+  ypos 1444
+ }
+push $N70e2ab10
+push 0
+ Switch {
+  inputs 2
+  which {{"\$gui"}}
+  name Switch9
+  note_font helvetica
+  xpos -321
+  ypos 140
+ }
+ Dot {
+  name Dot2
+  xpos -289
+  ypos 233
+ }
+ Dot {
+  name Dot9
+  xpos -289
+  ypos 275
+ }
+set N72eed240 [stack 0]
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{FrameCount}}
+  message "\[python nuke.thisNode().metadata(\"input/frame\", \[frame])]"
+  old_expression_markers {{0 -1}
+    }
+  box {{width/2} {global_font_scale*font_size+height/20} {"width-clamp(\n(int\n(ceil\n(width - height * \[value parent.MaskAR]) / 2\n)\n)\n+\n(int\n(ceil\n(width / \[value parent.MaskAR]) / 32\n)\n)\n, (int\n(ceil\n(width/40)\n)\n)\n, width\n)"} {height-height+height/20}}
+  xjustify right
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 23
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name frameCount_hiero
+  xpos -323
+  ypos 315
+ }
+set N72eed5f0 [stack 0]
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{"Date*\[if \{\[value parent.dateCustom]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  message "\[value parent.dateCustom]"
+  old_expression_markers {{0 -1}
+    }
+  box {{"clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {height-height/20} {"width/2 + clamp(\n(int\n(ceil\n(width - height * \[value parent.MaskAR]) / 2\n)\n)\n+\n(int\n(ceil\n(width / \[value parent.MaskAR]) / 32\n)\n)\n, (int\n(ceil\n(width/40)\n)\n)\n, width\n)"} {height-font_size*global_font_scale-height/20}}
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 25
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name datum_hiero_custom_2
+  xpos -323
+  ypos 428
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{"Date*\[if \{\[value parent.dateCustom]>=0\} \{return \"0\"\} \{return \"1\"\}]"}}
+  message "\[date %d.%m.%y]"
+  old_message {{48 56 46 48 52 46 49 57}
+    }
+  old_expression_markers {{0 7}
+    }
+  box {{"clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {height-height/20} {"width/2 + clamp(\n(int\n(ceil\n(width - height * \[value parent.MaskAR]) / 2\n)\n)\n+\n(int\n(ceil\n(width / \[value parent.MaskAR]) / 32\n)\n)\n, (int\n(ceil\n(width/40)\n)\n)\n, width\n)"} {height-font_size*global_font_scale-height/20}}
+  yjustify center
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 0 1}
+    }
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name datum_hiero
+  xpos -323
+  ypos 540
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "\[value parent.topMiddle]"
+  old_expression_markers {{0 -1}
+    }
+  box {{width/4} {height-height/20} {width/2+width/4} {height-global_font_scale*font_size-height/20}}
+  xjustify center
+  yjustify center
+  transforms {{0 2}
+    }
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name middle_hiero1
+  xpos -323
+  ypos 688
+ }
+ Dot {
+  name Dot6
+  xpos -289
+  ypos 751
+ }
+set N72eee4b0 [stack 0]
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{timecode}}
+  message "\[value parent.timecodeCustom]"
+  old_expression_markers {{0 -1}
+    }
+  box {{width/4} {global_font_scale*font_size+height/20} {width/2+width/4} {height/20}}
+  xjustify center
+  yjustify center
+  transforms {{0 2}
+    }
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name bottom_middle_hiero1
+  xpos -323
+  ypos 845
+ }
+push $N72eee4b0
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{timecode}}
+  message "no TC found"
+  old_message {{110 111 32 84 67 32 102 111 117 110 100}
+    }
+  box {{width/4} {global_font_scale*font_size+height/20} {width/2+width/4} {height/20}}
+  xjustify center
+  yjustify center
+  transforms {{0 2}
+    }
+  font_size_values {{0 100 1 100 2 100 3 100 4 100 5 100 6 100 7 100 8 100 9 100 10 100 0 1 1 1 2 1 3 1 4 1 5 1 6 1 7 1 8 1 9 1 10 1}
+    }
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name bottom_middle_hiero2
+  xpos -206
+  ypos 846
+ }
+push $N72eee4b0
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{timecode}}
+  message "\[python nuke.thisNode().metadata(\"input/timecode\", \[frame])]"
+  old_expression_markers {{0 -1}
+    }
+  box {{width/4} {global_font_scale*font_size+height/20} {width/2+width/4} {height/20}}
+  xjustify center
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 48
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name bottom_middle_hiero
+  xpos -80
+  ypos 846
+ }
+ Switch {
+  inputs 2
+  which {{"\[if \{\[value bottom_middle_hiero.message]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  name Switch2
+  xpos -206
+  ypos 980
+ }
+ Switch {
+  inputs 2
+  which {{"\[if \{\[value parent.timecodeCustom]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  name Switch3
+  xpos -323
+  ypos 980
+ }
+ Dot {
+  name Dot7
+  xpos -289
+  ypos 1060
+ }
+set N72eef370 [stack 0]
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{Name}}
+  message "\[value parent.nameCustom]"
+  old_expression_markers {{0 -1}
+    }
+  box {{"clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {global_font_scale*font_size+height/20} {"width/2+clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {height/20}}
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 1
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name name_hiero_1
+  xpos -323
+  ypos 1161
+ }
+push $N72eef370
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{Name}}
+  message "\[python str(nuke.thisNode().metadata(\"hiero/clip\", \[frame])).replace(\".\",\"_\")]"
+  old_message {{78 111 110 101}
+    }
+  old_expression_markers {{0 3}
+    }
+  box {{"clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {global_font_scale*font_size+height/20} {"width/2+clamp((int(ceil(width-height*\[value parent.MaskAR])/2))+(int(ceil(width/\[value parent.MaskAR])/32)), (int(ceil(width/40))), width)"} {height/20}}
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 60
+  global_font_scale {{height/font_size/36}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name name_hiero_2
+  xpos -141
+  ypos 1160
+ }
+ Switch {
+  inputs 2
+  which {{"\[if \{\[value parent.nameCustom]>=0\} \{return \"1\"\} \{return \"0\"\}]"}}
+  name Switch4
+  xpos -323
+  ypos 1278
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{parent.Logo}}
+  message LAVALabs
+  old_message {{76 65 86 65 76 97 98 115}
+    }
+  box {{width/2} {height-height/20} {"width-clamp(\n(int\n(ceil\n(width - height * \[value parent.MaskAR]) / 2\n)\n)\n+\n(int\n(ceil\n(width / \[value parent.MaskAR]) / 32\n)\n)\n, (int\n(ceil\n(width/40)\n)\n)\n, width\n)"} {height-font_size*global_font_scale-height/20}}
+  xjustify right
+  yjustify center
+  transforms {{0 2}
+    }
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name Logo_hiero
+  xpos -323
+  ypos 1333
+ }
+ Switch {
+  inputs 2
+  which {{"!\$gui"}}
+  name Switch1
+  xpos -323
+  ypos 1440
+ }
+set N6feb2850 [stack 0]
+ Output {
+  name Output1
+  xpos -323
+  ypos 1637
+ }
+push $N70e2aec0
+ ViewMetaData {
+  name ViewMetaData1
+  xpos 1255
+  ypos 229
+ }
+push $N72eed240
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{FrameCount}}
+  message "\[expression \{\[python nuke.thisNode().firstFrame()] + \[expression \{int(\[python nuke.thisNode().metadata(\"input/frame\", \[frame])])\}]\}]"
+  old_message {{91 101 120 112 114 101 115 115 105 111 110 32 123 49 32 43 32 91 101 120 112 114 101 115 115 105 111 110 32 123 105 110 116 40 41 125 93 125 93}
+    }
+  old_expression_markers {{13 13 34 33}
+    }
+  box {{width/2} {global_font_scale*font_size+height/20} {"width-clamp(\n(int\n(ceil\n(width - height * \[value parent.MaskAR]) / 2\n)\n)\n+\n(int\n(ceil\n(width / \[value parent.MaskAR]) / 32\n)\n)\n, (int\n(ceil\n(width/40)\n)\n)\n, width\n)"} {height-height+height/20}}
+  xjustify right
+  yjustify center
+  transforms {{0 2}
+    }
+  cursor_position 132
+  global_font_scale {{height/36/font_size}}
+  center {1024 778}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name frame_hiero
+  xpos -172
+  ypos 271
+ }
+push $N72eed5f0
+ Switch {
+  inputs 2
+  which {{"\[if \{\[lindex \[split \[python nuke.thisNode().metadata(\"input/filename\", \[frame])] . ] end ]==\"mp4\"\} \{return \"1\"\} \{return \"0\"\}]"}}
+  name Switch8
+  xpos -172
+  ypos 315
+ }
+push $N70e2d750
+ Text {
+  opacity {{timecode}}
+  message "\[expr \[frame]/\[value root.fps]]"
+  font C:/Windows/Fonts/arial.ttf
+  size {{input.format.h/36}}
+  xjustify center
+  yjustify center
+  Transform 1
+  box {{width/4} {size+height/20} {width/2+width/4} {height-height+height/20}}
+  center {1018 710}
+  name bottomMiddle1
+  xpos 904
+  ypos 866
+  disable {{"\$gui"}}
+ }
+push $N70e2b9d0
+push $N6feb2850
+ Viewer {
+  inputs 2
+  frame_range 100-100
+  gamma 3.14
+  colour_sample_bbox {0.046875 0.3520833254 0.05208333209 0.3552083373}
+  name Viewer1
+  xpos -679
+  ypos 903
+ }
+end_group

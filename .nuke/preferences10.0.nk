@@ -1,0 +1,10 @@
+Preferences {
+ inputs 0
+ name Preferences
+ localCachePath C:/Users/CS_SYD_PC2/Documents/TestCache
+ autoLocalCachePath C:/Users/CS_SYD_PC2/Documents/TestCache
+ DiskCachePath C:/Users/CS_SYD_PC2/Documents/TestCache
+ selectedGPUDeviceName "Use CPU"
+ platformPathRemaps ""
+ echoAllCommands true
+}

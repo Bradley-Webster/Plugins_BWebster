@@ -1,0 +1,236 @@
+Gizmo {
+ tile_color 0x32ff90ff
+ addUserKnob {20 ctrl}
+ addUserKnob {6 gpu l "Use GPU if Available" +STARTLINE}
+ gpu true
+ addUserKnob {26 d1 l "" +STARTLINE}
+ addUserKnob {4 pattern l "Bayer Pattern" M {BGGR RGGB GBRG GRBG "" ""}}
+ addUserKnob {6 cfa_vis l "Display CFA" -STARTLINE}
+ addUserKnob {4 mode l "Debayer Mode" M {Average Median "Weighted Median"}}
+ mode "Weighted Median"
+ addUserKnob {26 d2 l "" +STARTLINE}
+ addUserKnob {26 c l "" +STARTLINE T "-- Martin Kenzel 2018 | nuki.m4studios.at --"}
+}
+ Input {
+  inputs 0
+  name in
+  xpos -311
+  ypos 67
+ }
+ Dot {
+  name Dot1
+  xpos -277
+  ypos 173
+ }
+set N3bd7bc10 [stack 0]
+ Group {
+  name bayer_pattern
+  selected true
+  xpos -197
+  ypos 170
+  addUserKnob {20 bayer_pattern}
+  addUserKnob {41 "Local GPU: " T BlinkScript4.gpuName}
+  addUserKnob {41 "Use GPU if Available" T BlinkScript4.useGPUIfAvailable}
+  addUserKnob {26 ""}
+  addUserKnob {41 pattern T BlinkScript4.bayer_pattern_pattern}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 144
+   ypos 214
+  }
+  BlinkScript {
+   ProgramGroup 1
+   KernelDescription "1 \"bayer_pattern\" iterate componentWise 0f92e1a53c7c7e5e8818de883fb179cb92f3e5f1e04de763db62ac12a951ad39 2 \"src\" Read Point \"dst\" Write Point 1 \"pattern\" Int 1 AAAAAA=="
+   kernelSource "kernel bayer_pattern : public ImageComputationKernel<eComponentWise>\n\{\n  Image<eRead, eAccessPoint, eEdgeClamped> src;\n  Image<eWrite, eAccessPoint> dst;\n  \n  param:\n    // patterns are BGGR, RGGB, GBRG, GRBG\n    int pattern;\n  \n  void process(int3 pos)  \{\n    int chan = pos.z;\n    int chck = (( pos.x + pos.y%2 ) %2);\n    int tl = (pos.x%2) * ((pos.y+1)%2); int tr = (pos.x%2) * (pos.y%2);\n    int bl = ((pos.x+1)%2) * ((pos.y+1)%2); int br = ((pos.x+1)%2) * (pos.y%2);\n    if( pattern == 0 ) \{\n      //define BGGR\n      if( chan == 0 ) \{\n        dst() = tl;\n      \} else if ( chan == 1 ) \{\n        dst() = 1-chck;\n      \} else if ( chan == 2 ) \{\n        dst() = br;\n      \}\n    \} else if( pattern == 1 ) \{\n      //define RGGB\n      if( chan == 0 ) \{\n        dst() = br;\n      \} else if ( chan == 1 ) \{\n        dst() = 1-chck;\n      \} else if ( chan == 2 ) \{\n        dst() = tl;\n      \}\n    \} else if( pattern == 2 ) \{\n      //define GBRG\n      if( chan == 0 ) \{\n        dst() = bl;\n      \} else if ( chan == 1 ) \{\n        dst() = chck;\n      \} else if ( chan == 2 ) \{\n        dst() = tr;\n      \}\n    \} else if( pattern == 3 ) \{\n      //define GRBG\n      if( chan == 0 ) \{\n        dst() = tr;\n      \} else if ( chan == 1 ) \{\n        dst() = chck;\n      \} else if ( chan == 2 ) \{\n        dst() = bl;\n      \}\n    \}\n  \}\n\};"
+   useGPUIfAvailable {{parent.parent.gpu}}
+   rebuild ""
+   bayer_pattern_pattern {{parent.parent.pattern}}
+   name BlinkScript4
+   xpos 144
+   ypos 254
+  }
+  Output {
+   name Output1
+   xpos 144
+   ypos 354
+  }
+ end_group
+set N16e773f0 [stack 0]
+push $N3bd7bc10
+ Merge2 {
+  inputs 2
+  operation multiply
+  bbox B
+  Achannels rgb
+  Bchannels rgb
+  output rgb
+  name mult_src_pat
+  xpos -456
+  ypos 274
+ }
+ Dot {
+  name Dot5
+  xpos -422
+  ypos 423
+ }
+push $N16e773f0
+ Dot {
+  name Dot4
+  xpos -163
+  ypos 220
+ }
+set N3bd7b530 [stack 0]
+ Dot {
+  name Dot3
+  xpos -163
+  ypos 302
+ }
+set N3bd7c2f0 [stack 0]
+ Dot {
+  name Dot2
+  xpos -163
+  ypos 377
+ }
+push $N3bd7c2f0
+push $N3bd7b530
+push $N3bd7bc10
+ Group {
+  inputs 2
+  name debayer_green
+  tile_color 0xff00ff
+  xpos -311
+  ypos 274
+  addUserKnob {20 debayer_green}
+  addUserKnob {41 "Local GPU: " T BlinkScript4.gpuName}
+  addUserKnob {41 "Use GPU if Available" T BlinkScript4.useGPUIfAvailable}
+  addUserKnob {26 ""}
+  addUserKnob {41 mode T BlinkScript4.debayer_green_mode}
+ }
+  Input {
+   inputs 0
+   name Input2
+   xpos -164
+   ypos 559
+   number 1
+  }
+  Input {
+   inputs 0
+   name Input1
+   xpos -164
+   ypos 559
+  }
+  BlinkScript {
+   inputs 2
+   ProgramGroup 1
+   KernelDescription "1 \"debayer_green\" iterate pixelWise 492cf4d0b9d9a7db40f78b62607d4f931524318437b9e88c9eef9afbc6a9d7d1 3 \"src\" Read Ranged2D \"pat\" Read Point \"dst\" Write Point 1 \"mode\" Int 1 AAAAAA=="
+   kernelSource "kernel debayer_green : public ImageComputationKernel<ePixelWise>\n\{\n  Image<eRead, eAccessRanged2D, eEdgeConstant> src;\n  Image<eRead, eAccessPoint, eEdgeConstant> pat;\n  Image<eWrite, eAccessPoint> dst;\n  \n  param:\n    //modes are: average, median, weighted median\n    int mode;\n\n  void init() \{\n    src.setRange(-1, 1);\n  \}\n  \n  float c_mag(float4 c) \{\n    return(c.x*c.x + c.y*c.y + c.z*c.z + c.w*c.w);\n  \}\n  \n  float4 c_med(float4 c\[]) \{\n    //since we operate in pixels, not components, we need to extend the provided median to process float4\n    float c_x\[4]; float c_y\[4]; float c_z\[4]; float c_w\[4];\n    for(int i = 0; i < 4; i++) \{\n      c_x\[i] = c\[i].x; c_y\[i] = c\[i].y;\n      c_z\[i] = c\[i].z; c_w\[i] = c\[i].w;\n    \}\n    return(float4(median(c_x, 4), median(c_y, 4), median(c_z, 4), median(c_w, 4)));\n  \}\n  \n  void process(int2 pos)  \{\n    const SampleType(src) c = src(0, 0);\n    if(pat(1) < .005f) \{\n      //interpolate green and alpha on black pixels\n      const SampleType(src) l = src(-1, 0); const SampleType(src) r = src(1, 0);\n      const SampleType(src) b = src(0, -1); const SampleType(src) t = src(0, 1);\n      SampleType(src) vals\[4] = \{l, r, b, t\};\n      if( mode ==0) \{\n        const SampleType(src) avg = (l + r + b + t)/4.f;\n        dst(1) = avg.y;\n        dst(3) = avg.w;\n      \} else if ( mode == 1) \{\n        SampleType(src) med = c_med(vals);\n        dst(1) = med.y;\n        dst(3) = med.w;\n      \} else if ( mode == 2) \{\n        //find gradients\n        const float gx = c_mag(l - r); const float gy = c_mag(b - t);\n        //weight median values\n        if(gx >= gy) \{\n          vals\[0] *= 2.f; vals\[1] *= 2.f;\n        \} else \{\n          vals\[2] *= 2.f; vals\[3] *= 2.f;\n        \}\n        SampleType(src) med = c_med(vals);\n        dst(1) = med.y;\n        dst(3) = med.w;\n      \} \n    \} else \{\n      //pass through green and alpha on green pixels\n      dst(1) = c.y;\n      dst(3) = c.w;\n    \}\n    if( pat(0) > .995f) \{\n      //pass through red\n      dst(0) = c.x;\n    \} else if ( pat(2) > .995f) \{\n      //pass through blue\n      dst(2) = c.z;\n    \}\n  \}\n\};"
+   useGPUIfAvailable {{parent.parent.gpu}}
+   rebuild ""
+   debayer_green_mode {{parent.parent.mode}}
+   name BlinkScript4
+   xpos -164
+   ypos 599
+  }
+  Output {
+   name Output1
+   xpos -164
+   ypos 699
+  }
+ end_group
+ Group {
+  inputs 2
+  name debayer_red_blue_checker
+  tile_color 0xbf4172ff
+  xpos -311
+  ypos 346
+  addUserKnob {20 debayer_red_blue_checker}
+  addUserKnob {41 "Local GPU: " T BlinkScript4.gpuName}
+  addUserKnob {41 "Use GPU if Available" T BlinkScript4.useGPUIfAvailable}
+  addUserKnob {26 ""}
+ }
+  Input {
+   inputs 0
+   name Input2
+   xpos -158
+   ypos 645
+   number 1
+  }
+  Input {
+   inputs 0
+   name Input1
+   xpos -158
+   ypos 645
+  }
+  BlinkScript {
+   inputs 2
+   ProgramGroup 1
+   KernelDescription "1 \"debayer_red_blue_checker\" iterate pixelWise 372e1b633585c2e648be5dde4cd6619bcc6c91989584c4aabbf6909b24896346 3 \"src\" Read Ranged2D \"pat\" Read Point \"dst\" Write Point 0"
+   kernelSource "kernel debayer_red_blue_checker : public ImageComputationKernel<ePixelWise>\n\{\n  Image<eRead, eAccessRanged2D, eEdgeConstant> src;\n  Image<eRead, eAccessPoint, eEdgeConstant> pat;\n  Image<eWrite, eAccessPoint> dst;\n  \n  void init() \{\n    src.setRange(-1, 1);\n  \}\n  \n  void process(int2 pos)  \{\n    const SampleType(src) c = src(0, 0);\n    const SampleType(src) tl = src(-1, 1); const SampleType(src) tr = src(1, 1);\n    const SampleType(src) bl = src(-1, -1); const SampleType(src) br = src(1, -1);\n    if(pat(1) < .005f) \{\n      if(pat(0) > .995f) \{\n        //interpolate blue on red\n        const float avg = ((tl.z - (tl.y - c.y)) + (tr.z - (tr.y - c.y)) + (bl.z - (bl.y - c.y)) + (br.z - (br.y - c.y))) / 4.f;\n        dst(0) = c.x;\n        dst(2) = avg;\n      \} else \{\n        //interpolate red on blue\n        const float avg = ((tl.x - (tl.y - c.y)) + (tr.x - (tr.y - c.y)) + (bl.x - (bl.y - c.y)) + (br.x - (br.y - c.y))) / 4.f;\n        dst(0) = avg; \n        dst(2) = c.z;\n      \}\n    \}\n    //pass through green and alpha\n    dst(1) = c.y;\n    dst(3) = c.w;\n  \}\n\};"
+   useGPUIfAvailable {{parent.parent.gpu}}
+   rebuild ""
+   name BlinkScript4
+   xpos -158
+   ypos 685
+  }
+  Output {
+   name Output1
+   xpos -158
+   ypos 785
+  }
+ end_group
+ Group {
+  inputs 2
+  name debayer_red_blue_cross
+  tile_color 0x48bfbfff
+  xpos -311
+  ypos 420
+  addUserKnob {20 debayer_red_blue_cross}
+  addUserKnob {41 "Local GPU: " T BlinkScript4.gpuName}
+  addUserKnob {41 "Use GPU if Available" T BlinkScript4.useGPUIfAvailable}
+  addUserKnob {26 ""}
+ }
+  Input {
+   inputs 0
+   name Input2
+   xpos -134
+   ypos 741
+   number 1
+  }
+  Input {
+   inputs 0
+   name Input1
+   xpos -134
+   ypos 741
+  }
+  BlinkScript {
+   inputs 2
+   ProgramGroup 1
+   KernelDescription "1 \"debayer_red_blue_cross\" iterate pixelWise ab293dbed0b763fea33f47bf9dd68879a2565d8150d4b62919ec17c215a42bf4 3 \"src\" Read Ranged2D \"pat\" Read Point \"dst\" Write Point 0"
+   kernelSource "kernel debayer_red_blue_cross : public ImageComputationKernel<ePixelWise>\n\{\n  Image<eRead, eAccessRanged2D, eEdgeConstant> src;\n  Image<eRead, eAccessPoint, eEdgeConstant> pat;\n  Image<eWrite, eAccessPoint> dst;\n\n  void init() \{\n    src.setRange(-1, 1);\n  \}\n\n  void process(int2 pos)  \{\n    const SampleType(src) c = src(0, 0);\n    const SampleType(src) l = src(-1, 0); const SampleType(src) r = src(1, 0);\n    const SampleType(src) b = src(0, -1); const SampleType(src) t = src(0, 1);\n    if(pat(1) > .995f) \{\n      //interpolate missing red and blue\n      float avg_r = ((l.x - (l.y - c.y)) + (r.x - (r.y - c.y)) + (b.x - (b.y - c.y)) + (t.x - (t.y - c.y))) / 4.f;\n      float avg_b = ((l.z - (l.y - c.y)) + (r.z - (r.y - c.y)) + (b.z - (b.y - c.y)) + (t.z - (t.y - c.y))) / 4.f;\n      dst(0) = avg_r;\n      dst(2) = avg_b;\n    \} else \{\n      dst(0) = c.x;\n      dst(2) = c.z;\n    \}\n    //pass through green and alpha\n    dst(1) = c.y;\n    dst(3) = c.w;\n  \}\n\};"
+   useGPUIfAvailable {{parent.parent.gpu}}
+   rebuild ""
+   name BlinkScript4
+   xpos -134
+   ypos 781
+  }
+  Output {
+   name Output1
+   xpos -134
+   ypos 881
+  }
+ end_group
+ Switch {
+  inputs 2
+  which {{parent.cfa_vis}}
+  name cfa_vis
+  xpos -311
+  ypos 504
+ }
+ Output {
+  name out
+  xpos -311
+  ypos 620
+ }
+end_group

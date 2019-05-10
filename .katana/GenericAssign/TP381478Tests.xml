@@ -1,0 +1,8 @@
+<args format='1.0' scope='/root' fixedCEL='/root'>
+
+  <page name="TP 381478 tests">
+	  <float name='myNumber' default='0.123'/>
+	  <string name='myString'/>
+  </page>
+
+</args>

@@ -1,0 +1,191 @@
+#! C:/Program Files/Nuke10.5v1/nuke-10.5.1.dll -nx
+version 10.5 v1
+Gizmo {
+ inputs 2
+ addUserKnob {20 grades l Grades}
+ addUserKnob {6 supergrade_premultCheck l unpremult +STARTLINE}
+ addUserKnob {41 blackpoint T Grade1.blackpoint}
+ addUserKnob {41 whitepoint T Grade1.whitepoint}
+ addUserKnob {41 black l lift T Grade1.black}
+ addUserKnob {41 white l gain T Grade1.white}
+ addUserKnob {41 multiply T Grade1.multiply}
+ addUserKnob {41 add l offset T Grade1.add}
+ addUserKnob {41 gamma T Grade1.gamma}
+ addUserKnob {41 saturation T ColorCorrect1.saturation}
+ addUserKnob {41 contrast T ColorCorrect1.contrast}
+ addUserKnob {6 supergrade_enableSoftclip l "enable softclip" +STARTLINE}
+ addUserKnob {41 softclip_min l "softclip min" T SoftClip1.softclip_min}
+ addUserKnob {41 softclip_max l "softclip max" T SoftClip1.softclip_max}
+ addUserKnob {41 minimum_enable l "black clamp" T Clamp1.minimum_enable}
+ addUserKnob {41 maximum_enable l "white clamp" T Clamp1.maximum_enable}
+ addUserKnob {20 supergradeHue l Hue}
+ addUserKnob {41 hue l "" -STARTLINE T HueCorrect1.hue}
+ addUserKnob {41 hue_rotation l "hue rotation" T HueShift1.hue_rotation}
+ addUserKnob {20 supergradeHistogram l Histogram}
+ addUserKnob {41 hist l Histogram T Histogram1.hist}
+}
+ Input {
+  inputs 0
+  name colour
+  xpos -580
+  ypos -366
+ }
+set N8024e400 [stack 0]
+ Unpremult {
+  name Unpremult1
+  xpos -580
+  ypos -320
+  disable {{!parent.supergrade_premultCheck}}
+ }
+push $N8024e400
+ Dot {
+  name Dot4
+  xpos -374
+  ypos -362
+ }
+ Input {
+  inputs 0
+  name mask
+  xpos -270
+  ypos -353
+  number 1
+  addUserKnob {20 User}
+  addUserKnob {6 connected +STARTLINE}
+  connected {{"\[exists parent.input1.disable]" x1 0}}
+ }
+push 0
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos -270
+  ypos -274
+ }
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle1
+  xpos -270
+  ypos -213
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  name Merge1
+  xpos -408
+  ypos -213
+ }
+ Switch {
+  inputs 2
+  which {{!parent.mask.connected}}
+  name Switch2
+  xpos -580
+  ypos -213
+ }
+ Grade {
+  name Grade1
+  xpos -580
+  ypos -168
+ }
+ ColorCorrect {
+  name ColorCorrect1
+  xpos -580
+  ypos -128
+ }
+ HueCorrect {
+  name HueCorrect1
+  xpos -580
+  ypos -84
+ }
+ HueShift {
+  name HueShift1
+  xpos -580
+  ypos -43
+ }
+set N8024f800 [stack 0]
+ SoftClip {
+  conversion "logarithmic compress"
+  softclip_min 0
+  name SoftClip1
+  xpos -714
+  ypos -43
+ }
+ Dot {
+  name Dot1
+  xpos -680
+  ypos 8
+ }
+push $N8024f800
+ Switch {
+  inputs 2
+  which {{parent.supergrade_enableSoftclip}}
+  name Switch1
+  xpos -577
+  ypos 4
+ }
+ Clamp {
+  maximum_enable false
+  name Clamp1
+  xpos -577
+  ypos 42
+ }
+ Histogram {
+  name Histogram1
+  xpos -577
+  ypos 108
+ }
+set N8024ec00 [stack 0]
+push $N8024ec00
+ Dot {
+  name Dot5
+  xpos -655
+  ypos 112
+ }
+push $N8024e400
+ Dot {
+  name Dot2
+  xpos -789
+  ypos -362
+ }
+ Dot {
+  name Dot3
+  xpos -789
+  ypos 198
+ }
+ Merge2 {
+  inputs 2
+  name Merge2
+  xpos -689
+  ypos 194
+ }
+ Switch {
+  inputs 2
+  name Switch3
+  xpos -577
+  ypos 194
+ }
+ Premult {
+  name Premult1
+  xpos -577
+  ypos 254
+  disable {{!parent.supergrade_premultCheck}}
+ }
+set N80fc3800 [stack 0]
+ Output {
+  name Output1
+  xpos -577
+  ypos 310
+ }
+push $N80fc3800
+push $N80fc3800
+ Viewer {
+  inputs 2
+  frame_range 1-100
+  name Viewer1
+  xpos -409
+  ypos 254
+ }
+end_group

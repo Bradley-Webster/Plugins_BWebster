@@ -1,0 +1,37 @@
+#! C:/Program Files/Nuke10.5v5/nuke-10.5.5.dll -nx
+version 10.5 v5
+Gizmo {
+ tile_color 0xfff200ff
+ addUserKnob {20 User}
+ addUserKnob {26 Edit_FileType l "Edit File Type:"}
+ addUserKnob {41 jpg -STARTLINE T Write_FileType_Replace.jpg}
+ addUserKnob {41 png -STARTLINE T Write_FileType_Replace.png}
+ addUserKnob {41 tif -STARTLINE T Write_FileType_Replace.tif}
+ addUserKnob {41 exr -STARTLINE T Write_FileType_Replace.exr}
+ addUserKnob {41 dpx -STARTLINE T Write_FileType_Replace.dpx}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 0
+ }
+ NoOp {
+  name Write_FileType_Replace
+  tile_color 0xffe700ff
+  gl_color 0xff
+  xpos 0
+  ypos 154
+  addUserKnob {20 User}
+  addUserKnob {26 Edit_FileType l "Edit File Type:"}
+  addUserKnob {22 jpg -STARTLINE T "newExtension = '.jpg'\n\nn = nuke.allNodes()\n\nfor i in n:\n    if i.Class() == \"Write\":\n        i.knob(\"selected\").setValue(True)\n        testReplace=i.knob(\"file\").getValue()\n\n        print 'Before Replace: ', testReplace\n        testReplace = os.path.splitext(testReplace)\[0]+ newExtension\n        print 'After Replace: ', testReplace\n        i.knob(\"file\").setValue(testReplace)"}
+  addUserKnob {22 png -STARTLINE T "newExtension = '.png'\n\nn = nuke.allNodes()\n\nfor i in n:\n    if i.Class() == \"Write\":\n        i.knob(\"selected\").setValue(True)\n        testReplace=i.knob(\"file\").getValue()\n\n        print 'Before Replace: ', testReplace\n        testReplace = os.path.splitext(testReplace)\[0]+ newExtension\n        print 'After Replace: ', testReplace\n        i.knob(\"file\").setValue(testReplace)"}
+  addUserKnob {22 tif -STARTLINE T "newExtension = '.tif'\n\nn = nuke.allNodes()\n\nfor i in n:\n    if i.Class() == \"Write\":\n        i.knob(\"selected\").setValue(True)\n        testReplace=i.knob(\"file\").getValue()\n\n        print 'Before Replace: ', testReplace\n        testReplace = os.path.splitext(testReplace)\[0]+ newExtension\n        print 'After Replace: ', testReplace\n        i.knob(\"file\").setValue(testReplace)"}
+  addUserKnob {22 exr -STARTLINE T "newExtension = '.exr'\n\nn = nuke.allNodes()\n\nfor i in n:\n    if i.Class() == \"Write\":\n        i.knob(\"selected\").setValue(True)\n        testReplace=i.knob(\"file\").getValue()\n\n        print 'Before Replace: ', testReplace\n        testReplace = os.path.splitext(testReplace)\[0]+ newExtension\n        print 'After Replace: ', testReplace\n        i.knob(\"file\").setValue(testReplace)"}
+  addUserKnob {22 dpx -STARTLINE T "newExtension = '.dpx'\n\nn = nuke.allNodes()\n\nfor i in n:\n    if i.Class() == \"Write\":\n        i.knob(\"selected\").setValue(True)\n        testReplace=i.knob(\"file\").getValue()\n\n        print 'Before Replace: ', testReplace\n        testReplace = os.path.splitext(testReplace)\[0]+ newExtension\n        print 'After Replace: ', testReplace\n        i.knob(\"file\").setValue(testReplace)"}
+ }
+ Output {
+  name Output1
+  xpos 0
+  ypos 300
+ }
+end_group

@@ -1,0 +1,264 @@
+#! C:/Program Files/Nuke11.2DnD.000168b/nuke-11.2.dll -nx
+version 11.2 v0.000168b
+Gizmo {
+ help "Applies a text burn-in to the media.\n\nUp to 6 pieces of metadata can be added to the shot"
+ addUserKnob {20 burnIn_tab l BurnIn}
+ addUserKnob {19 burnIn_color l color t "The text color"}
+ burnIn_color 1
+ addUserKnob {6 burnIn_color_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {7 burnIn_opacity l opacity t "The text opacity"}
+ burnIn_opacity 1
+ addUserKnob {7 burnIn_xPadding l x-padding t "The distance between the Burn-in text and the left and right image borders" R 10 100}
+ burnIn_xPadding 30
+ addUserKnob {7 burnIn_yPadding l y-padding t "The distance between the Burn-in text and the top and bottom image borders" R 10 100}
+ burnIn_yPadding 30
+ addUserKnob {84 burnIn_font l font}
+ addUserKnob {7 burnIn_textScale l "text scale" R 0 2}
+ burnIn_textScale 0.5
+ addUserKnob {26 ""}
+ addUserKnob {41 top_Left T Text_TL.message}
+ addUserKnob {41 top_Middle T Text_TM.message}
+ addUserKnob {41 top_Right T Text_TR.message}
+ addUserKnob {41 Bottom_Left T Text_BL.message}
+ addUserKnob {41 bottom_Middle T Text_BM.message}
+ addUserKnob {41 bottom_Right T Text_BR.message}
+ addUserKnob {20 Background}
+ addUserKnob {6 burnIn_backgroundEnable l enable t "Enable a background for the Burn-in text. A background will be applied to each Burn-in field" -STARTLINE}
+ addUserKnob {19 burnIn_backgroundColor l color t "The background color"}
+ burnIn_backgroundColor {0 0 0 1}
+ addUserKnob {6 burnIn_backgroundColor_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {7 burnIn_backgroundOpacity l opacity t "The background opacity"}
+ burnIn_backgroundOpacity 1
+ addUserKnob {7 burnIn_backgroundXBorder l x-border t "The distance between the background and the left and right edges of the text. This can be used to adjust the size of the background in the x-direction" R 0 50}
+ burnIn_backgroundXBorder 10
+ addUserKnob {7 burnIn_backgroundYBorder l y-border t "The distance between the background and the top and bottom edges of the text. This can be used to adjust the size of the background in the y-direction" R 0 50}
+ burnIn_backgroundYBorder 5
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -217
+  ypos 47
+ }
+ Dot {
+  name Dot2
+  xpos -183
+  ypos 98
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{parent.burnIn_opacity}}
+  message "\[python nuke.thisNode().metadata(nuke.toNode(nuke.thisNode().fullName().split('.')\\\[len(nuke.thisNode().fullName().split('.'))-2\\]).knob(\"burnIn_topLeft\").value(), \[frame])]"
+  old_message {{91 112 121 116 104 111 110 32 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 109 101 116 97 100 97 116 97 40 110 117 107 101 46 116 111 78 111 100 101 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 92 91 108 101 110 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 41 45 50 92 93 41 46 107 110 111 98 40 34 98 117 114 110 73 110 95 116 111 112 76 101 102 116 34 41 46 118 97 108 117 101 40 41 44 32 49 41 93}
+    }
+  old_expression_markers {{164 164}
+    }
+  box {{parent.burnIn_xPadding} {parent.burnIn_yPadding} {"width - parent.burnIn_xPadding"} {"height - parent.burnIn_yPadding"}}
+  transforms {{0 2}
+    }
+  cursor_position 173
+  font {[value parent.burnIn_font]}
+  global_font_scale {{parent.burnIn_textScale}}
+  scale {1 1}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  color {{parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color}}
+  enable_background {{parent.burnIn_backgroundEnable}}
+  background_color {{parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor}}
+  background_opacity {{burnIn_backgroundOpacity}}
+  background_border_x {{parent.burnIn_backgroundXBorder}}
+  background_border_y {{parent.burnIn_backgroundYBorder}}
+  name Text_TL
+  xpos -217
+  ypos 148
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{parent.burnIn_opacity}}
+  message "\[python nuke.thisNode().metadata(nuke.toNode(nuke.thisNode().fullName().split('.')\\\[len(nuke.thisNode().fullName().split('.'))-2\\]).knob(\"burnIn_topMiddle\").value(), \[frame])]"
+  old_message {{91 112 121 116 104 111 110 32 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 109 101 116 97 100 97 116 97 40 110 117 107 101 46 116 111 78 111 100 101 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 92 91 108 101 110 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 41 45 50 92 93 41 46 107 110 111 98 40 34 98 117 114 110 73 110 95 116 111 112 77 105 100 100 108 101 34 41 46 118 97 108 117 101 40 41 44 32 49 41 93}
+    }
+  old_expression_markers {{166 166}
+    }
+  box {{parent.burnIn_xPadding} {parent.burnIn_yPadding} {"width - parent.burnIn_xPadding"} {"height - parent.burnIn_yPadding"}}
+  xjustify center
+  transforms {{0 2}
+    }
+  cursor_position 77
+  font {[value parent.burnIn_font]}
+  global_font_scale {{parent.burnIn_textScale}}
+  scale {1 1}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  color {{parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color}}
+  enable_background {{parent.burnIn_backgroundEnable}}
+  background_color {{parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor}}
+  background_opacity {{burnIn_backgroundOpacity}}
+  background_border_x {{parent.burnIn_backgroundXBorder}}
+  background_border_y {{parent.burnIn_backgroundYBorder}}
+  name Text_TM
+  xpos -53
+  ypos 148
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{parent.burnIn_opacity}}
+  message "\[python nuke.thisNode().metadata(nuke.toNode(nuke.thisNode().fullName().split('.')\\\[len(nuke.thisNode().fullName().split('.'))-2\\]).knob(\"burnIn_topRight\").value(), \[frame])]"
+  old_message {{91 112 121 116 104 111 110 32 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 109 101 116 97 100 97 116 97 40 110 117 107 101 46 116 111 78 111 100 101 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 92 91 108 101 110 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 41 45 50 92 93 41 46 107 110 111 98 40 34 98 117 114 110 73 110 95 116 111 112 82 105 103 104 116 34 41 46 118 97 108 117 101 40 41 44 32 49 41 93}
+    }
+  old_expression_markers {{165 165}
+    }
+  box {{parent.burnIn_xPadding} {parent.burnIn_yPadding} {"width - parent.burnIn_xPadding"} {"height - parent.burnIn_yPadding"}}
+  xjustify right
+  transforms {{0 2}
+    }
+  cursor_position 88
+  font {[value parent.burnIn_font]}
+  global_font_scale {{parent.burnIn_textScale}}
+  scale {1 1}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  color {{parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color}}
+  enable_background {{parent.burnIn_backgroundEnable}}
+  background_color {{parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor}}
+  background_opacity {{burnIn_backgroundOpacity}}
+  background_border_x {{parent.burnIn_backgroundXBorder}}
+  background_border_y {{parent.burnIn_backgroundYBorder}}
+  name Text_TR
+  xpos 123
+  ypos 148
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{parent.burnIn_opacity}}
+  message "\[python nuke.thisNode().metadata(nuke.toNode(nuke.thisNode().fullName().split('.')\\\[len(nuke.thisNode().fullName().split('.'))-2\\]).knob(\"burnIn_bottomLeft\").value(), \[frame])]"
+  old_message {{91 112 121 116 104 111 110 32 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 109 101 116 97 100 97 116 97 40 110 117 107 101 46 116 111 78 111 100 101 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 92 91 108 101 110 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 41 45 50 92 93 41 46 107 110 111 98 40 34 98 117 114 110 73 110 95 98 111 116 116 111 109 76 101 102 116 34 41 46 118 97 108 117 101 40 41 44 32 49 41 93}
+    }
+  old_expression_markers {{167 167}
+    }
+  box {{parent.burnIn_xPadding} {parent.burnIn_yPadding} {"width - parent.burnIn_xPadding"} {"height - parent.burnIn_yPadding"}}
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 74
+  font {[value parent.burnIn_font]}
+  global_font_scale {{parent.burnIn_textScale}}
+  scale {1 1}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  color {{parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color}}
+  enable_background {{parent.burnIn_backgroundEnable}}
+  background_color {{parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor}}
+  background_opacity {{burnIn_backgroundOpacity}}
+  background_border_x {{parent.burnIn_backgroundXBorder}}
+  background_border_y {{parent.burnIn_backgroundYBorder}}
+  name Text_BL
+  xpos -218
+  ypos 244
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{parent.burnIn_opacity}}
+  message "\[python nuke.thisNode().metadata(nuke.toNode(nuke.thisNode().fullName().split('.')\\\[len(nuke.thisNode().fullName().split('.'))-2\\]).knob(\"burnIn_bottomMiddle\").value(), \[frame])]"
+  old_message {{91 112 121 116 104 111 110 32 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 109 101 116 97 100 97 116 97 40 110 117 107 101 46 116 111 78 111 100 101 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 92 91 108 101 110 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 41 45 50 92 93 41 46 107 110 111 98 40 34 98 117 114 110 73 110 95 98 111 116 116 111 109 77 105 100 100 108 101 34 41 46 118 97 108 117 101 40 41 44 32 49 41 93}
+    }
+  old_expression_markers {{169 169}
+    }
+  box {{parent.burnIn_xPadding} {parent.burnIn_yPadding} {"width - parent.burnIn_xPadding"} {"height - parent.burnIn_yPadding"}}
+  xjustify center
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 80
+  font {[value parent.burnIn_font]}
+  global_font_scale {{parent.burnIn_textScale}}
+  scale {1 1}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  color {{parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color}}
+  enable_background {{parent.burnIn_backgroundEnable}}
+  background_color {{parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor}}
+  background_opacity {{burnIn_backgroundOpacity}}
+  background_border_x {{parent.burnIn_backgroundXBorder}}
+  background_border_y {{parent.burnIn_backgroundYBorder}}
+  name Text_BM
+  xpos -53
+  ypos 244
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  opacity {{parent.burnIn_opacity}}
+  message "\[python nuke.thisNode().metadata(nuke.toNode(nuke.thisNode().fullName().split('.')\\\[len(nuke.thisNode().fullName().split('.'))-2\\]).knob(\"burnIn_bottomRight\").value(), \[frame])]"
+  old_message {{91 112 121 116 104 111 110 32 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 109 101 116 97 100 97 116 97 40 110 117 107 101 46 116 111 78 111 100 101 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 92 91 108 101 110 40 110 117 107 101 46 116 104 105 115 78 111 100 101 40 41 46 102 117 108 108 78 97 109 101 40 41 46 115 112 108 105 116 40 39 46 39 41 41 45 50 92 93 41 46 107 110 111 98 40 34 98 117 114 110 73 110 95 98 111 116 116 111 109 82 105 103 104 116 34 41 46 118 97 108 117 101 40 41 44 32 49 41 93}
+    }
+  old_expression_markers {{168 168}
+    }
+  box {{parent.burnIn_xPadding} {parent.burnIn_yPadding} {"width - parent.burnIn_xPadding"} {"height - parent.burnIn_yPadding"}}
+  xjustify right
+  yjustify bottom
+  transforms {{0 2}
+    }
+  cursor_position 91
+  font {[value parent.burnIn_font]}
+  global_font_scale {{parent.burnIn_textScale}}
+  scale {1 1}
+  cursor_initialised true
+  autofit_bbox false
+  initial_cursor_position {{0 1556}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  color {{parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color} {parent.burnIn_color}}
+  enable_background {{parent.burnIn_backgroundEnable}}
+  background_color {{parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor} {parent.burnIn_backgroundColor}}
+  background_opacity {{burnIn_backgroundOpacity}}
+  background_border_x {{parent.burnIn_backgroundXBorder}}
+  background_border_y {{parent.burnIn_backgroundYBorder}}
+  name Text_BR
+  xpos 128
+  ypos 244
+ }
+ Output {
+  name Output1
+  xpos 128
+  ypos 330
+ }
+end_group

@@ -1,0 +1,7 @@
+Preferences {
+ inputs 0
+ name Preferences
+ selectedGPUDeviceName "Quadro M4000"
+ platformPathRemaps ""
+ useLayoutFromScript true
+}

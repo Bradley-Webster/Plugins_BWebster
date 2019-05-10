@@ -1,0 +1,29 @@
+#! C:/Program Files/Nuke10.5v6/nuke-10.5.6.dll -nx
+version 10.5 v6
+Gizmo {
+ tile_color 0x567277ff
+ addUserKnob {20 User}
+ addUserKnob {41 SelectedNodes l "Selected Nodes" -STARTLINE T GlobalFont.SelectedNodes}
+ addUserKnob {41 AllNodes l "All Nodes" -STARTLINE T GlobalFont.AllNodes}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 220
+  ypos -146
+ }
+ NoOp {
+  name GlobalFont
+  xpos 220
+  ypos -106
+  hide_input true
+  addUserKnob {20 textControls l "Text Controls"}
+  addUserKnob {22 SelectedNodes l "Selected Nodes" -STARTLINE T "nuke.root().begin()\nfont = nuke.getInput('Select Font', 'Type Font')\nfontStyle = nuke.getInput('Select Font Style', 'Type Style')\nif font:\n    for n in nuke.selectedNodes():\n        n.knob('font').setValue(font, fontStyle)"}
+  addUserKnob {22 AllNodes l "All Nodes" -STARTLINE T "nuke.root().begin()\nfont = nuke.getInput('Select Font', 'Type Font')\nfontStyle = nuke.getInput('Select Font Style', 'Type Style')\nif font:\n    for n in nuke.allNodes():\n        if n.Class() == \"Text2\":\n            n.knob('font').setValue(font, fontStyle)"}
+ }
+ Output {
+  name Output1
+  xpos 220
+  ypos -6
+ }
+end_group

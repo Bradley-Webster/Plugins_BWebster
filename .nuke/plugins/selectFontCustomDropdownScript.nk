@@ -1,0 +1,194 @@
+#! C:/Program Files/Nuke11.2v3/nuke-11.2.3.dll -nx
+version 11.2 v3
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="1920" h="1178" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1257" stretch="1"/>
+            <splitter orientation="2">
+                <split size="836"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="294"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <splitter orientation="2">
+                <split size="1134"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                    <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                    <page id="uk.co.thefoundry.scripteditor.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Users/CS_SYD_PC2/.nuke/plugins/selectFontCustomDropdownScript.nk
+ frame 72
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Text {
+ inputs 0
+ message blahh
+ font C:/Windows/Fonts/SHOWG.TTF
+ yjustify center
+ box {512 389 1536 1167}
+ center {1024 778}
+ name Text2
+ note_font helvetica
+ xpos 310
+ ypos -138
+}
+Viewer {
+ frame_range 1-100
+ name Viewer1
+ note_font helvetica
+ xpos 42
+ ypos 7
+}
+NoOp {
+ inputs 0
+ name NoOp2
+ note_font helvetica
+ xpos 111
+ ypos -139
+ addUserKnob {20 User}
+ addUserKnob {52 fontChoice l "" -STARTLINE T myPyKnob(nuke.thisNode())}
+ addUserKnob {52 fontChoice_1 l "" -STARTLINE T myPyKnob(nuke.thisNode())}
+}
+Text2 {
+ inputs 0
+ font_size_toolbar 100
+ font_width_toolbar 100
+ font_height_toolbar 150
+ message vraveraeAFaefaeAsaaaa
+ old_message {{118 114 97 118 101 114 97 101 65 70 97 101 102 97 101 65 115 97 97 97 97}
+   }
+ box {1292.999878 922.999939 1614.999878 953.999939}
+ transforms {{0 2}
+   }
+ cursor_position 21
+ font {{ Arial : Regular : arial.ttf : 0 }}
+ global_font_scale 0.3
+ font_height 150
+ center {1024 778}
+ cursor_initialised true
+ initial_cursor_position {{1292.999878 953.999939}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+   }
+ name Text1
+ note_font helvetica
+ xpos 491
+ ypos -105
+}
+Group {
+ inputs 0
+ name Group1
+ tile_color 0x567277ff
+ note_font helvetica
+ xpos -170
+ ypos -26
+ addUserKnob {20 User}
+ addUserKnob {4 FontType l "" -STARTLINE M {Regular "Bold Italic" Italic Bold "" "" ""}}
+ addUserKnob {41 SelectedNodes l "Selected Nodes" T GlobalFont.SelectedNodes}
+ addUserKnob {41 AllNodes l "All Nodes" -STARTLINE T GlobalFont.AllNodes}
+ addUserKnob {52 fontChoice l "" -STARTLINE T myPyKnob(nuke.thisNode())}
+ addUserKnob {52 fontChoice_1 l "" -STARTLINE T myPyKnob(nuke.thisNode())}
+ addUserKnob {52 fontChoice_2 l "" -STARTLINE T myPyKnob(nuke.thisNode())}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 220
+  ypos -146
+ }
+ NoOp {
+  name GlobalFont
+  selected true
+  xpos 220
+  ypos -106
+  hide_input true
+  addUserKnob {20 textControls l "Text Controls"}
+  addUserKnob {22 SelectedNodes l "Selected Nodes" -STARTLINE T "nuke.root().begin()\nfont = nuke.getInput('Select Font', 'Type Font')\nfontStyle = nuke.getInput('Select Font Style', 'Type Style')\nif font:\n    for n in nuke.selectedNodes():\n        n.knob('font').setValue(font, fontStyle)"}
+  addUserKnob {22 AllNodes l "All Nodes" -STARTLINE T "nuke.root().begin()\nfont = nuke.getInput('Select Font', 'Type Font')\nfontStyle = nuke.getInput('Select Font Style', 'Type Style')\nif font:\n    for n in nuke.allNodes():\n        if n.Class() == \"Text2\":\n            n.knob('font').setValue(font, fontStyle)"}
+ }
+ Output {
+  name Output1
+  xpos 220
+  ypos -6
+ }
+end_group
+NoOp {
+ inputs 0
+ name NoOp1
+ note_font helvetica
+ xpos -52
+ ypos -70
+ addUserKnob {20 User}
+ addUserKnob {52 MyWidget l "" -STARTLINE T MyWidget(nuke.thisNode())}
+}
+Group {
+ inputs 0
+ name selectFontCustomDropdown
+ note_font helvetica
+ xpos -83
+ ypos -133
+ addUserKnob {20 selectFont}
+ addUserKnob {26 "" l "Font Selection:"}
+ addUserKnob {41 fontChoice l "" +STARTLINE T NoOp1.fontChoice}
+ addUserKnob {41 fontStyle l "" -STARTLINE T NoOp1.fontStyle}
+ addUserKnob {26 "" l "Apply to:"}
+ addUserKnob {41 AllTextNodes l "All Text Nodes" T NoOp1.AllTextNodes}
+ addUserKnob {41 SelectedTextNodes l "Selected Text Nodes" -STARTLINE T NoOp1.SelectedTextNodes}
+ addUserKnob {52 fontChoice l "" -STARTLINE T myPyKnob(nuke.thisNode())}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -45
+  ypos -164
+ }
+ NoOp {
+  name NoOp1
+  note_font helvetica
+  selected true
+  xpos -45
+  ypos -124
+  addUserKnob {20 User}
+  addUserKnob {26 font l "Font Selection:"}
+  addUserKnob {52 fontChoice l "" +STARTLINE T myPyKnob(nuke.thisNode()) +STARTLINE}
+  addUserKnob {4 fontStyle l "" -STARTLINE M {Regular "Bold Italic" Italic Bold ""}}
+  addUserKnob {26 font2 l "Apply to:"}
+  addUserKnob {22 AllTextNodes l "All Text Nodes" -STARTLINE T "\n\nnode = nuke.thisNode()\nfontObject = node.knob('fontChoice').getObject()\ncurrentValue = fontObject.currentFont()\nfontValue = currentValue.key().split(',')\[0]\n\nfont = fontValue\nfontStyle = node.knob('fontStyle').value()\n\nnuke.root().begin()\nfor n in nuke.allNodes():\n        if n.Class() == \"Text2\":\n            n.knob('font').setValue(font, fontStyle)\n\n\n"}
+  addUserKnob {22 SelectedTextNodes l "Selected Text Nodes" -STARTLINE T "nuke.root().begin()\nnode = nuke.thisNode()\nfontObject = node.knob('fontChoice').getObject()\ncurrentValue = fontObject.currentFont()\nfontValue = currentValue.key().split(',')\[0]\n\nfont = fontValue\nfontStyle = node.knob('fontStyle').value()\nif font:\n    for n in nuke.selectedNodes():\n        n.knob('font').setValue(font, fontStyle)"}
+ }
+ Output {
+  name Output1
+  xpos -45
+  ypos -24
+ }
+end_group

@@ -1,0 +1,38 @@
+#! C:/Program Files/Nuke11.2v3/nuke-11.2.3.dll -nx
+version 11.2 v3
+Gizmo {
+ note_font helvetica
+ addUserKnob {20 User}
+ addUserKnob {26 "" l "Font Selection:"}
+ addUserKnob {41 fontChoice l "" +STARTLINE T customPySideTextKnob.fontChoice}
+ addUserKnob {41 fontStyle l "" -STARTLINE T customPySideTextKnob.fontStyle}
+ addUserKnob {26 "" l "Apply to:"}
+ addUserKnob {41 AllTextNodes l "All Text Nodes" T customPySideTextKnob.AllTextNodes}
+ addUserKnob {41 SelectedTextNodes l "Selected Text Nodes" -STARTLINE T customPySideTextKnob.SelectedTextNodes}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 425
+  ypos -59
+ }
+ NoOp {
+  name customPySideTextKnob
+  note_font helvetica
+  selected true
+  xpos 425
+  ypos -19
+  addUserKnob {20 User}
+  addUserKnob {26 font l "Font Selection:"}
+  addUserKnob {52 fontChoice l "" +STARTLINE T customFontComboPyKnob(nuke.thisNode()) +STARTLINE}
+  addUserKnob {4 fontStyle l "" -STARTLINE M {Regular "Bold Italic" Italic Bold ""}}
+  addUserKnob {26 font2 l "Apply to:"}
+  addUserKnob {22 AllTextNodes l "All Text Nodes" -STARTLINE T "\n\nnode = nuke.thisNode()\nfontObject = node.knob('fontChoice').getObject()\ncurrentValue = fontObject.currentFont()\nfontValue = currentValue.key().split(',')\[0]\n\nfont = fontValue\nfontStyle = node.knob('fontStyle').value()\n\nnuke.root().begin()\n\nfor n in nuke.allNodes():\n        if n.Class() == \"Text2\":\n            n.knob('font').setValue(font, fontStyle)\n\n\n"}
+  addUserKnob {22 SelectedTextNodes l "Selected Text Nodes" -STARTLINE T "\nnode = nuke.thisNode()\nfontObject = node.knob('fontChoice').getObject()\ncurrentValue = fontObject.currentFont()\nfontValue = currentValue.key().split(',')\[0]\n\nfont = fontValue\nfontStyle = node.knob('fontStyle').value()\n\nnuke.root().begin()\n\nif font:\n    for n in nuke.selectedNodes():\n        n.knob('font').setValue(font, fontStyle)"}
+ }
+ Output {
+  name Output1
+  xpos 425
+  ypos 81
+ }
+end_group

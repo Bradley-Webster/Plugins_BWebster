@@ -1,0 +1,44 @@
+<args format='1.0' scope='/root' fixedCEL='/root'>
+
+  <!-- A Color Ramp compound parameter, consisting of 4 sibling parameters -->
+  <int name='colorRamp' default='5' widget='colorRamp'/>
+  <string name='colorRamp_Interpolation' default='linear' options='linear|catmull-rom|bspline' widget='null'/>
+  <float name='colorRamp_Knots' default='0,0,0.5,1,1' size='5' widget='null'/>
+  <float name='colorRamp_Colors' default='1,0,0,1,0,0,0,1,0,0,0,1,0,0,1' size='15' tupleSize='3' widget='null'/>
+
+
+  <!-- A Float Ramp compound parameter, consisting of 4 sibling parameters -->
+  <int name='floatRamp' default='4' widget='floatRamp'/>
+  <string name='floatRamp_Interpolation' default='linear' options='linear|catmull-rom|bspline' widget='null'/>
+  <float name='floatRamp_Knots' default='0,0,1,1' size='4' widget='null'/>
+  <float name='floatRamp_Floats' default='0,0,1,1' size='4' widget='null'/>
+
+
+  <!-- A Color Ramp compound parameter, consisting of 4 sibling parameters,
+       grouped in a page -->
+  <page name="Color Ramp Debug">
+    <int name='colorRamp_debug' default='5' widget='colorRamp'/>
+    <string name='colorRamp_debug_Interpolation' default='linear' options='linear|catmull-rom|bspline'/>
+    <float name='colorRamp_debug_Knots' default='0,0,0.5,1,1' size='5'/>
+    <float name='colorRamp_debug_Colors' default='1,0,0,1,0,0,0,1,0,0,0,1,0,0,1' size='15' tupleSize='3'/>
+  </page>
+
+
+  <!-- A Float Ramp compound parameter, consisting of 4 sibling parameters,
+       grouped in a page -->
+  <page name="Float Ramp Debug">
+    <int name='floatRamp_debug' default='4' widget='floatRamp'/>
+    <string name='floatRamp_debug_Interpolation' default='linear' options='linear|catmull-rom|bspline'/>
+    <float name='floatRamp_debug_Knots' default='0,0,1,1' size='4'/>
+    <float name='floatRamp_debug_Floats' default='0,0,1,1' size='4'/>
+  </page>
+
+  <page name="TP 381478 tests">
+	  <float name='myNumber' default='0.123'/>
+	  <string name='myString'/>
+	  <float name='myNumberArray' default='0.123' forceArray='True'/>
+	  <string name='myStringArray' forceArray='True'/>
+  </page>
+
+
+</args>

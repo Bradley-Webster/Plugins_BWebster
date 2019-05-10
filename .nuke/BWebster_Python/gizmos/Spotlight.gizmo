@@ -1,0 +1,58 @@
+#! C:/Program Files/Nuke11.2v1/nuke-11.2.1.dll -nx
+version 11.2 v1
+Gizmo {
+ note_font helvetica
+ addUserKnob {20 "" l "Kernel Parameters"}
+ addUserKnob {26 _1 l "Local GPU:"}
+ addUserKnob {41 useGPUIfAvailable l "Use GPU if available" T BlinkScript1.useGPUIfAvailable}
+ addUserKnob {41 vectorize l "Vectorize on CPU" -STARTLINE T BlinkScript1.vectorize}
+ addUserKnob {26 kernel_knob_group l "" +STARTLINE}
+ addUserKnob {41 ml_powerWindow_Position l Position T BlinkScript1.ml_powerWindow_Position}
+ addUserKnob {41 ml_powerWindow_Radius l Radius T BlinkScript1.ml_powerWindow_Radius}
+ addUserKnob {41 ml_powerWindow_Falloff l Falloff T BlinkScript1.ml_powerWindow_Falloff}
+ addUserKnob {41 ml_powerWindow_Aspect l Aspect T BlinkScript1.ml_powerWindow_Aspect}
+ addUserKnob {41 ml_powerWindow_Gain l Gain T BlinkScript1.ml_powerWindow_Gain}
+ addUserKnob {41 ml_powerWindow_Gamma l Gamma T BlinkScript1.ml_powerWindow_Gamma}
+ addUserKnob {41 ml_powerWindow_Lift l Lift T BlinkScript1.ml_powerWindow_Lift}
+ addUserKnob {41 ml_powerWindow_Mix l Mix T BlinkScript1.ml_powerWindow_Mix}
+ addUserKnob {41 ml_powerWindow_invertMask l invertMask -STARTLINE T BlinkScript1.ml_powerWindow_invertMask}
+ addUserKnob {41 ml_powerWindow_viewMask l viewMask -STARTLINE T BlinkScript1.ml_powerWindow_viewMask}
+ addUserKnob {41 publishButton l Publish T BlinkScript1.publishButton}
+ addUserKnob {41 protectKernelWhenPublishing l "Protect kernel" T BlinkScript1.protectKernelWhenPublishing}
+ addUserKnob {26 ""}
+ addUserKnob {41 format T BlinkScript1.format}
+ addUserKnob {41 specifiedFormat l "Specify output format" -STARTLINE T BlinkScript1.specifiedFormat}
+ addUserKnob {26 "" l " "}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 5
+  ypos -106
+ }
+set N73e85500 [stack 0]
+ BlinkScript {
+  recompileCount 3
+  ProgramGroup 1
+  KernelDescription "2 \"ml_powerWindow\" iterate pixelWise 3269e7f2419702cd18b8de1e7860d90cec822ce47ab9fe2aa8644f26d8cfc512 2 \"src\" Read Point \"dst\" Write Point 10 \"Position\" Float 2 AAAgRAAAtEM= \"Radius\" Float 1 AABwRA== \"Falloff\" Float 1 AACAPw== \"Aspect\" Float 1 AACAPw== \"Gain\" Float 4 AACAQAAAgEAAAIBAAACAQA== \"Gamma\" Float 4 AACAQAAAgEAAAIBAAACAQA== \"Lift\" Float 4 AAAAAAAAAAAAAAAAAAAAAA== \"Mix\" Float 1 AAAAPw== \"invertMask\" Bool 1 AA== \"viewMask\" Bool 1 AA== 10 \"position\" 2 1 \"radius\" 1 1 \"falloff\" 1 1 \"aspect\" 1 1 \"gain\" 4 1 \"gamma\" 4 1 \"lift\" 4 1 \"mixer\" 1 1 \"invertMask\" 1 1 \"viewMask\" 1 1 0"
+  kernelSource "kernel ml_powerWindow: ImageComputationKernel<ePixelWise>\n\{\nImage<eRead, eAccessPoint, eEdgeClamped> src;\nImage<eWrite,eAccessPoint> dst; \n\nparam:\n float2 position;\n float radius;\n float falloff;\n float aspect;\n float4 gain;\n float4 gamma;\n float4 lift;\n float mixer;\n bool invertMask;\n bool viewMask;\nvoid define() \{\n defineParam(position, \"Position\", float2(640.0f, 360.0f));\n defineParam(radius, \"Radius\", float(960.0f));\n defineParam(falloff, \"Falloff\", float(1.0f));\n defineParam(aspect, \"Aspect\", float(1.0f));\n defineParam(gain, \"Gain\", float4(4.0f));\n defineParam(gamma, \"Gamma\", float4(4.0f));\n defineParam(lift, \"Lift\", float4(0.0f));\n defineParam(mixer, \"Mix\", float(0.5f));\n \}\n\nvoid process(int2 pos) \{\n SampleType(dst) sample(0.0f);\n sample.x = (pos.x-position.x)*(aspect/1);\n sample.y = (pos.y-position.y)*(1/aspect);\n sample.z = 0;\n float dist=sqrt(sample.x*sample.x+sample.y*sample.y);\n float size=dist/radius;\n float invert=1.0f-size;\n float cl= clamp(invert,0.0f,1.0f);\n float mask=pow(cl,1/falloff);\n if(invertMask)\{\n mask=1.0f-mask;\n \}\n float outR= pow(src(0)*gain.x,1/gamma.x)+lift.x;\n float outG= pow(src(1)*gain.y,1/gamma.y)+lift.y;\n float outB= pow(src(2)*gain.z,1/gamma.z)+lift.z;\n dst() = (float4(outR,outG,outB,1.0f)*mixer*mask) + src()*(1.0-mixer*mask);\n if(viewMask)\{\n dst()=mask;\n \}\n \}\n\};\n\n"
+  rebuild ""
+  ml_powerWindow_Position {1024 778}
+  rebuild_finalise ""
+  name BlinkScript1
+  xpos 5
+  ypos -39
+ }
+ Output {
+  name Output1
+  xpos 4
+  ypos 35
+ }
+push $N73e85500
+ Viewer {
+  frame_range 1-100
+  name Viewer1
+  xpos 143
+  ypos 36
+ }
+end_group

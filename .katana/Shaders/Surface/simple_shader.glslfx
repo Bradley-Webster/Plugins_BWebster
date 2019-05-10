@@ -1,0 +1,28 @@
+-- glslfx version 0.1
+
+-- configuration
+{
+    "textures": {
+        "texture": {"documentation" : "The texture."}
+    },
+    "parameters": {
+        "flipT" : {
+            "default" : true,
+            "documentation" : "Flip the direction of the T texture coordinates"
+        }
+    },
+    "techniques" : {
+        "default" : {
+            "surfaceShader" : {
+                "source": [ "Katana.SurfaceShader" ]
+            }
+       }
+    }
+}
+
+-- glsl Katana.SurfaceShader
+
+vec4 surfaceShader(vec4 Peye, vec3 Neye, vec4 color, vec4 patchCoord)
+{
+    return HdGet_texture(HdGet_st());
+}

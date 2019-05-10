@@ -1,0 +1,7 @@
+<args format='1.0' scope='/root' fixedCEL='/root'>
+   <string name='assetWorkaround' forceArray='True' widget='sortableArray'>
+      <hintdict name="childHints">
+         <string name='widget' value='assetIdInput'/>
+      </hintdict>
+   </string>
+</args>

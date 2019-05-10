@@ -1,0 +1,26 @@
+set cut_paste_input [stack 0]
+version 10.5 v1
+push $cut_paste_input
+NoOp {
+ name CurveGenerator
+ selected true
+ xpos -305
+ ypos -97
+ hide_input true
+ addUserKnob {20 User}
+ addUserKnob {7 output t "this is where your expression\nlives.\nExpression link to here or generate curves once you happy"}
+ output {{"curveType==0?((sin((frame*frequency)+phase))*amplitude)+(offset):curveType==1?((noise((frame*frequency)+phase))*amplitude)+(offset):curveType==2?((((random((frame*frequency)+phase))*amplitude)+(offset))+\n(random((frame+phase)*turb_freq)*turb_amp)):0" x59 0.20971895}}
+ addUserKnob {4 curveType M {sin noise random "" "" "" "" ""}}
+ curveType random
+ addUserKnob {7 amplitude R -50 50}
+ amplitude 0.5
+ addUserKnob {7 frequency R -1 1}
+ frequency 0.069398
+ addUserKnob {7 phase R -100 100}
+ phase -118
+ addUserKnob {7 offset R -10 10}
+ offset 0.5
+ addUserKnob {7 turb_freq}
+ turb_freq 1
+ addUserKnob {7 turb_amp}
+}

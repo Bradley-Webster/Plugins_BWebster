@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+import PyOpenColorIO as OCIO
+config = OCIO.GetCurrentConfig()
+for cs in config.getColorSpaces():
+	print cs.getName()

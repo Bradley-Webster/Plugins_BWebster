@@ -1,0 +1,64 @@
+----------
+DISCLAIMER: This is completely un-tested and un-supported.
+Use at your own peril, and please don't contact Foundry support
+about any issues you may encounter, drop me a line instead: 
+info@tomcowland.com
+
+Any feedback or suggestions most welcome!
+
+Please do not re-distribute this, its a work-in-progress alpha
+version.
+----------
+
+
+LookFile Inspector v0.2
+
+An experiment in displaying the contents of a LookFile in Katana.
+You can just type in any path, or right-click a LookFileAssign or
+LookFileBake node when a LookFile Inspector tab is visible.
+
+Each pass, and root location within a pass is presented in a tree 
+along with the locations that are affected by the look file.
+
+A couple of different options are available for how attribues
+and scenegraph locations are displayed. Trying some things out.
+
+Attributes can be displayed either hierarchicaly, or as a flat list.
+The affected Scenegraph can also be optionaly displayed as a flat list.
+
+If attributes are set to 'Spread Sheet' mode - the display can be sorted
+by any column.
+
+Wild cards can be used in the search box glob style. 
+
+Hold down shift when expanding/double-clicking to expand all children.
+
+
+NOTES:
+
+ - Search is incredibly naive/basic at present.
+ - There is very little in the way of progress display and the likes
+ - Attribute values are literal, and un-truncated.
+
+ 
+INSTALLATION:
+
+Put the LookFileInspector directory in a 'Tabs' folder anywhere on
+your $KATANA_RESOURCES. It will then be available in the Tabs menu.
+
+
+KNOWN ISSUES:
+
+ - If you close an instance of the Tab, and make a new one, it may be
+blank. If this happens, make another, and close the blank one.
+
+ - Check marks don't appear next to the curent state in the Options
+menu items
+
+ - Tabs can't save state, so display preferences are stored in your
+home directory. This means that the last set state will be re-applied
+to any open Tabs when they are restored.
+
+
+
+ 

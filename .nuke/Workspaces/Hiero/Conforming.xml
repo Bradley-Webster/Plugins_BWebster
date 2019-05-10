@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1920" h="1162" screen="0">
+        <splitter orientation="2">
+            <split size="802"/>
+            <splitter orientation="1">
+                <split size="436"/>
+                <splitter orientation="2">
+                    <split size="428"/>
+                    <dock id="" activePageId="uk.co.thefoundry.project.2">
+                        <page id="uk.co.thefoundry.project.2" layout="splitter(129,281)"/>
+                        <page id="uk.co.thefoundry.project.1" layout="splitter(160,470)"/>
+                        <page id="Properties.1"/>
+                    </dock>
+                    <split size="370"/>
+                    <dock id="" activePageId="uk.co.thefoundry.spreadsheetview.1">
+                        <page id="uk.co.thefoundry.spreadsheetview.1"/>
+                    </dock>
+                </splitter>
+                <split size="1480"/>
+                <splitter orientation="1">
+                    <split size="738"/>
+                    <dock id="" activePageId="uk.co.thefoundry.sequenceviewer.1" focus="true">
+                        <page id="uk.co.thefoundry.sequenceviewer.1"/>
+                        <page id="uk.co.thefoundry.exportqueue.1"/>
+                    </dock>
+                    <split size="738"/>
+                    <dock id="" activePageId="uk.co.thefoundry.scripteditor.1">
+                        <page id="uk.co.thefoundry.scripteditor.1"/>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="312"/>
+            <splitter orientation="1">
+                <split size="1920"/>
+                <dock id="" activePageId="uk.co.thefoundry.timeline.1">
+                    <page id="uk.co.thefoundry.timeline.1" layout="splitter(564,1352)"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="1912" y="-8" w="1920" h="1178" maximized="1" screen="1">
+        <splitter orientation="2">
+            <split size="664"/>
+            <splitter orientation="1">
+                <split size="445"/>
+                <dock id="" activePageId="uk.co.thefoundry.project.2">
+                    <page id="uk.co.thefoundry.project.2" layout="splitter(160,259)"/>
+                </dock>
+                <split size="968"/>
+                <dock id="" activePageId="uk.co.thefoundry.sequenceviewer.1">
+                    <page id="uk.co.thefoundry.sequenceviewer.1"/>
+                    <page id="uk.co.thefoundry.exportqueue.1"/>
+                </dock>
+                <split size="499"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                    <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                </dock>
+            </splitter>
+            <split size="466"/>
+            <splitter orientation="1">
+                <split size="1920"/>
+                <dock id="" activePageId="uk.co.thefoundry.timeline.1" focus="true">
+                    <page id="uk.co.thefoundry.timeline.1" layout="splitter(445,1471)"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>

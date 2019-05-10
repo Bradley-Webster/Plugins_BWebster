@@ -1,0 +1,8 @@
+
+<args format='1.0' scope='/root' fixedCEL='/root'>
+   <string name='assetWorkaround' widget='popup'options="a|b|c" editable="true"/>
+      <hintdict name="childHints">
+         <string name='widget' value='popup'/>
+      </hintdict>
+   </string>
+</args>

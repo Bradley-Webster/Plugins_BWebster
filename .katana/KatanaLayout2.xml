@@ -1,0 +1,114 @@
+<layouts>
+  <layout full="False" name="test">
+    <window geometry="-8,-8,1920,1138" showTimeline="True">
+      <frame panels="Undo History,Viewer (Hydra)" top="1" coords="0.0,0.3,0.8,1.0">
+        <panel name="Undo History" showTimeline="False"/>
+        <panel name="Viewer (Hydra)" settings="{&apos;aoEnable&apos;: False, &apos;gridVisible&apos;: True, &apos;hudVisible&apos;: True}" showTimeline="False"/>
+      </frame>
+      <frame panels="Dope Sheet,Curve Editor" top="0" coords="0.8,0.0,1.0,1.0">
+        <panel name="Dope Sheet" showTimeline="False"/>
+        <panel name="Curve Editor" showTimeline="False"/>
+      </frame>
+      <frame panels="Monitor" top="0" coords="0.0,0.0,0.8,0.3">
+        <panel name="Monitor" showTimeline="False"/>
+      </frame>
+    </window>
+    <screen>
+      <frame top="-1" coords="0.0,0.0,1.0,1.0"/>
+    </screen>
+    <floating geometry="1912,-8,1920,1178">
+      <frame panels="Node Graph" top="0" coords="0.0,0.2,1.0,0.7">
+        <panel name="Node Graph" showTimeline="False"/>
+      </frame>
+      <frame panels="Parameters,Project Settings,Catalog" top="0" coords="0.0,0.7,0.6,1.0">
+        <panel name="Parameters" showTimeline="False"/>
+        <panel name="Project Settings" showTimeline="False"/>
+        <panel name="Catalog" settings="{&apos;columnWidths&apos;: {0: 20, 1: 20, 2: 50, 3: 20, 4: 20, 5: 90, 6: 40, 7: 55, 8: 55, 9: 55, 10: 55, 11: 83}}" showTimeline="False"/>
+      </frame>
+      <frame panels="Scene Graph,Python" top="0" coords="0.0,0.0,1.0,0.2">
+        <panel name="Scene Graph" settings="{&apos;columnWidths&apos;: {&apos;Lights&apos;: 100, &apos;Type&apos;: 75, &apos;Name&apos;: 250}}" showTimeline="False"/>
+        <panel name="Python" showTimeline="False"/>
+      </frame>
+      <frame panels="Attributes,Color Palette,Render Log" top="0" coords="0.6,0.7,1.0,1.0">
+        <panel name="Attributes" showTimeline="False"/>
+        <panel name="Color Palette" showTimeline="False"/>
+        <panel name="Render Log" showTimeline="False"/>
+      </frame>
+    </floating>
+  </layout>
+  <layout full="False" name="Nuke Style 2 Window">
+    <window geometry="-8,-8,1920,1138" showTimeline="True">
+      <frame panels="Undo History,Viewer (Hydra)" top="1" coords="0.0,0.3,0.8,1.0">
+        <panel name="Undo History" showTimeline="False"/>
+        <panel name="Viewer (Hydra)" settings="{&apos;gridVisible&apos;: True, &apos;proxyGeometryEnabled&apos;: True, &apos;aoEnabled&apos;: False, &apos;viewportLayoutStyle&apos;: &apos;Single&apos;, &apos;verticalToolBarVisible&apos;: True, &apos;hudVisible&apos;: True, &apos;boundingBoxesEnabled&apos;: True}" showTimeline="False"/>
+      </frame>
+      <frame panels="Dope Sheet,Curve Editor" top="0" coords="0.8,0.0,1.0,1.0">
+        <panel name="Dope Sheet" showTimeline="False"/>
+        <panel name="Curve Editor" showTimeline="False"/>
+      </frame>
+      <frame panels="Monitor" top="0" coords="0.0,0.0,0.8,0.3">
+        <panel name="Monitor" showTimeline="False"/>
+      </frame>
+    </window>
+    <screen>
+      <frame top="-1" coords="0.0,0.0,1.0,1.0"/>
+    </screen>
+    <floating geometry="1912,-8,1920,1178">
+      <frame panels="Node Graph" top="0" coords="0.0,0.2,1.0,0.7">
+        <panel name="Node Graph" showTimeline="False"/>
+      </frame>
+      <frame panels="Parameters,Project Settings,Catalog" top="0" coords="0.0,0.7,0.6,1.0">
+        <panel name="Parameters" showTimeline="False"/>
+        <panel name="Project Settings" showTimeline="False"/>
+        <panel name="Catalog" settings="{&apos;columnWidths&apos;: {0: 20, 1: 20, 2: 50, 3: 20, 4: 20, 5: 90, 6: 40, 7: 55, 8: 55, 9: 55, 10: 55, 11: 68}}" showTimeline="False"/>
+      </frame>
+      <frame panels="Scene Graph,Python" top="0" coords="0.0,0.0,1.0,0.2">
+        <panel name="Scene Graph" settings="{&apos;columnWidths&apos;: {&apos;Lights&apos;: 100, &apos;Type&apos;: 75, &apos;Name&apos;: 152}}" showTimeline="False"/>
+        <panel name="Python" showTimeline="False"/>
+      </frame>
+      <frame panels="Attributes,Color Palette,Render Log" top="0" coords="0.6,0.7,1.0,1.0">
+        <panel name="Attributes" showTimeline="False"/>
+        <panel name="Color Palette" showTimeline="False"/>
+        <panel name="Render Log" showTimeline="False"/>
+      </frame>
+    </floating>
+  </layout>
+  <layout full="False" name="Katana3Test">
+    <window geometry="-8,-8,1920,1138" showTimeline="True">
+      <frame panels="Undo History,Viewer,Viewer (Hydra)" top="2" coords="0.0,0.3,0.8,1.0">
+        <panel name="Undo History" showTimeline="False"/>
+        <panel name="Viewer" showTimeline="False"/>
+        <panel name="Viewer (Hydra)" settings="{&apos;gridVisible&apos;: True, &apos;hudVisible&apos;: True}" showTimeline="False"/>
+      </frame>
+      <frame panels="Dope Sheet,Curve Editor" top="0" coords="0.8,0.0,1.0,1.0">
+        <panel name="Dope Sheet" showTimeline="False"/>
+        <panel name="Curve Editor" showTimeline="False"/>
+      </frame>
+      <frame panels="Monitor" top="0" coords="0.0,0.0,0.8,0.3">
+        <panel name="Monitor" showTimeline="False"/>
+      </frame>
+    </window>
+    <screen>
+      <frame top="-1" coords="0.0,0.0,1.0,1.0"/>
+    </screen>
+    <floating geometry="1912,-8,1920,1178">
+      <frame panels="Node Graph" top="0" coords="0.0,0.2,1.0,0.7">
+        <panel name="Node Graph" showTimeline="False"/>
+      </frame>
+      <frame panels="Parameters,Project Settings,Catalog" top="0" coords="0.0,0.7,0.6,1.0">
+        <panel name="Parameters" showTimeline="False"/>
+        <panel name="Project Settings" showTimeline="False"/>
+        <panel name="Catalog" settings="{&apos;columnWidths&apos;: {0: 20, 1: 20, 2: 50, 3: 20, 4: 20, 5: 90, 6: 40, 7: 55, 8: 55, 9: 55, 10: 55, 11: 467}}" showTimeline="False"/>
+      </frame>
+      <frame panels="Scene Graph,Python" top="0" coords="0.0,0.0,1.0,0.2">
+        <panel name="Scene Graph" settings="{&apos;columnWidths&apos;: {&apos;Lights&apos;: 100, &apos;Type&apos;: 75, &apos;Name&apos;: 250}}" showTimeline="False"/>
+        <panel name="Python" showTimeline="False"/>
+      </frame>
+      <frame panels="Attributes,Color Palette,Render Log" top="0" coords="0.6,0.7,1.0,1.0">
+        <panel name="Attributes" showTimeline="False"/>
+        <panel name="Color Palette" showTimeline="False"/>
+        <panel name="Render Log" showTimeline="False"/>
+      </frame>
+    </floating>
+  </layout>
+</layouts>

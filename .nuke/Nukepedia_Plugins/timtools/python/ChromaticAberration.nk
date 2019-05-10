@@ -1,0 +1,278 @@
+#! C:/Program Files/Nuke10.5v1/nuke-10.5.1.dll -nx
+version 10.5 v1
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="1920" y="-24" w="1920" h="1160" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1241" stretch="1"/>
+            <splitter orientation="2">
+                <split size="643"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                    <page id="Viewer.2"/>
+                </dock>
+                <split size="452"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Users/tim.parsons/Desktop/ChromaticAberration.nk
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+CheckerBoard2 {
+ inputs 0
+ name CheckerBoard1
+ xpos -547
+ ypos 4
+}
+Group {
+ name ChromaticAberrationPlus
+ xpos -547
+ ypos 127
+ addUserKnob {20 Controls}
+ addUserKnob {41 Red T Output.Red}
+ addUserKnob {41 Green T Output.Green}
+ addUserKnob {41 Blue T Output.Blue}
+ addUserKnob {41 red T Output.red}
+ addUserKnob {41 green T Output.green}
+ addUserKnob {41 blue T Output.blue}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -580
+  ypos -190
+ }
+ Dot {
+  name Dot1
+  xpos -546
+  ypos -114
+ }
+set N6b022c00 [stack 0]
+push $N6b022c00
+ Shuffle {
+  red black
+  green black
+  alpha black
+  name BlueShuffle
+  xpos -470
+  ypos -71
+ }
+set N6b022800 [stack 0]
+ Transform {
+  translate {{parent.Output.blue} 0}
+  center {960 540}
+  name BB
+  xpos -50
+  ypos 129
+  hide_input true
+ }
+push 0
+push $N6b022c00
+ Shuffle {
+  green black
+  blue black
+  alpha black
+  name Red_Shuffle
+  xpos -690
+  ypos -72
+ }
+set N6b022000 [stack 0]
+ Transform {
+  translate {{-parent.BB.translate} 0}
+  center {960 540}
+  name BR
+  xpos -157
+  ypos 176
+  hide_input true
+ }
+push $N6b022c00
+ Shuffle {
+  red black
+  blue black
+  alpha black
+  name GreenShuffle
+  xpos -580
+  ypos -70
+ }
+set N72525800 [stack 0]
+ Transform {
+  translate {{-parent.BB.translate} 0}
+  center {960 540}
+  name BG
+  xpos -267
+  ypos 176
+  hide_input true
+ }
+ Merge2 {
+  inputs 3+1
+  operation max
+  name Blue
+  xpos -221
+  ypos 411
+ }
+ Switch {
+  inputs 2
+  which {{!parent.Output.Blue}}
+  name Switch5
+  xpos -221
+  ypos 593
+ }
+push $N6b022800
+ Transform {
+  translate {{-parent.GG.translate} 0}
+  center {960 540}
+  name GB
+  xpos -470
+  ypos 150
+  hide_input true
+ }
+push 0
+push $N6b022000
+ Transform {
+  translate {{-parent.GG.translate} 0}
+  center {960 540}
+  name GR
+  xpos -690
+  ypos 149
+  hide_input true
+ }
+push $N72525800
+ Transform {
+  translate {{parent.Output.green} 0}
+  center {960 540}
+  name GG
+  xpos -580
+  ypos 90
+  hide_input true
+ }
+ Merge2 {
+  inputs 3+1
+  operation max
+  name Green
+  xpos -558
+  ypos 353
+ }
+push $N6b022c00
+ Switch {
+  inputs 2
+  which {{parent.Output.Green}}
+  name Switch4
+  xpos -677
+  ypos 389
+ }
+push $N6b022800
+ Transform {
+  translate {{-parent.RR.translate} 0}
+  center {960 540}
+  name RB
+  xpos -912
+  ypos 197
+  hide_input true
+ }
+push 0
+push $N6b022000
+ Transform {
+  translate {{parent.Output.red} 0}
+  center {960 540}
+  name RR
+  xpos -1129
+  ypos 151
+  hide_input true
+ }
+push $N72525800
+ Transform {
+  translate {{-parent.RR.translate} 0}
+  center {960 540}
+  name RG
+  xpos -1020
+  ypos 196
+  hide_input true
+ }
+ Merge2 {
+  inputs 3+1
+  operation max
+  name Red
+  xpos -1020
+  ypos 344
+ }
+push $N6b022c00
+ Switch {
+  inputs 2
+  which {{parent.Output.Red}}
+  name Switch3
+  xpos -1020
+  ypos 479
+ }
+ Switch {
+  inputs 2
+  which {{parent.Output.Green}}
+  name Switch1
+  xpos -677
+  ypos 479
+ }
+ Switch {
+  inputs 2
+  which {{parent.Output.Blue}}
+  name Switch2
+  xpos -677
+  ypos 593
+ }
+ NoOp {
+  name Output
+  xpos -677
+  ypos 866
+  addUserKnob {20 User}
+  addUserKnob {6 Red +STARTLINE}
+  addUserKnob {6 Green +STARTLINE}
+  addUserKnob {6 Blue +STARTLINE}
+  addUserKnob {7 red t red R -5 5}
+  addUserKnob {7 green R -5 5}
+  addUserKnob {7 blue R -5 5}
+ }
+set Nbd36a800 [stack 0]
+ Output {
+  name Output1
+  xpos -677
+  ypos 927
+ }
+push $Nbd36a800
+ Viewer {
+  frame_range 1-100
+  name Viewer1
+  xpos -987
+  ypos 932
+ }
+end_group
+Viewer {
+ frame 1
+ frame_range 1-100
+ name Viewer1
+ xpos -547
+ ypos 224
+}

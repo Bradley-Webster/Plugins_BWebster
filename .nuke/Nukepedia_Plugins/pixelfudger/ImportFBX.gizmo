@@ -1,0 +1,35 @@
+#! C:/Program Files/Nuke11.1v2/nuke-11.1.2.dll -nx
+version 11.1 v2
+Gizmo {
+ inputs 2
+ tile_color 0xff0000ff
+ addUserKnob {20 User}
+ addUserKnob {41 read_from_file_link l "read from file" T Axis.read_from_file_link}
+ addUserKnob {41 file_1 l file T Axis.file}
+}
+ Input {
+  inputs 0
+  name Input2
+  xpos 304
+  ypos -180
+  number 1
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 304
+  ypos -180
+ }
+ Axis2 {
+  inputs 2
+  read_from_file true
+  name Axis
+  xpos 324
+  ypos -127
+ }
+ Output {
+  name Output1
+  xpos 314
+  ypos -40
+ }
+end_group

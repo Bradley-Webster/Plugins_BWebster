@@ -1,0 +1,6 @@
+Preferences {
+ inputs 0
+ name Preferences
+ platformPathRemaps ""
+ RenderWithFrameServer true
+}

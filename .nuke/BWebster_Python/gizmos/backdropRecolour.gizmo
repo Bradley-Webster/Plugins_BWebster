@@ -1,0 +1,41 @@
+#! C:/Program Files/Nuke11.2v1/nuke-11.2.1.dll -nx
+version 11.2 v1
+Gizmo {
+ tile_color {{4232163072}}
+ note_font helvetica
+ addUserKnob {20 Main}
+ addUserKnob {41 BackdropColour l "Backdrop Colour" T ColourCodes1.BackdropColour}
+ addUserKnob {41 SpecificBackdrop l "Specific Backdrop?" T ColourCodes1.SpecificBackdrop}
+ addUserKnob {41 BackdropColourButton l "Change BackdropNode Tile Color" -STARTLINE T ColourCodes1.BackdropColourButton}
+}
+ Input {
+  inputs 0
+  name Input1
+  tile_color {{1757181696 x1 1757151487}}
+  xpos 509
+  ypos -49
+ }
+ NoOp {
+  name ColourCodes1
+  tile_color {{1181248768 x1 1901726208}}
+  xpos 509
+  ypos 17
+  addUserKnob {20 User}
+  addUserKnob {18 BackdropColour l "Backdrop Colour"}
+  BackdropColour {0.99 0.258294 0.68902}
+  addUserKnob {6 BackdropColour_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  BackdropColour_panelDropped true
+  addUserKnob {6 BackdropColour_panelDropped_1 l "panel dropped state" +HIDDEN +STARTLINE}
+  addUserKnob {6 BackdropColour_panelDropped_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 BackdropColour_panelDropped_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {1 SpecificBackdrop l "Specific Backdrop?" t "Adding a value to this input will change only backdrop nodes with the same label\n\nTo change all backdrops, name this input 'ALL'"}
+  SpecificBackdrop ALL
+  addUserKnob {22 BackdropColourButton l "Change BackdropNode Tile Color" -STARTLINE T "def backdropColorChanged():\n    colour = nuke.thisNode().knob('BackdropColour').value()\n    print colour\n    r = 255 * colour\[0]\n    g = 255 * colour\[1]\n    b = 255 * colour\[2]\n\n    tile_color = int('%02x%02x%02x%02x' % (r,g,b,0),16)\n    nuke.thisGroup().knob('tile_color').setExpression(str(tile_color))\n\n    allBackdropNodes = \[n for n in nuke.allNodes(group=nuke.root()) if n.Class() in ('BackdropNode')]\n\n    for BackdropNode in allBackdropNodes:\n        BackdropNodeLabel = nuke.toNode(BackdropNode.name()).knob('label').getValue()\n        SpecificBackdrop = nuke.thisNode().knob('SpecificBackdrop').getValue()\n        if BackdropNodeLabel == SpecificBackdrop:\n            nuke.toNode(BackdropNode.name()).knob('tile_color').setExpression(str(tile_color))\n        elif SpecificBackdrop == 'ALL':\n            nuke.toNode(BackdropNode.name()).knob('tile_color').setExpression(str(tile_color))\n\nbackdropColorChanged()"}
+ }
+ Output {
+  name Output1
+  tile_color 0x72c97aff
+  xpos 509
+  ypos 91
+ }
+end_group

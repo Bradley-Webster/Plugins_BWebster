@@ -1,0 +1,23 @@
+#! C:/Program Files/Nuke11.2v1/nuke-11.2.1.dll -nx
+version 11.2 v1
+Gizmo {
+ tile_color 0x76c976ff
+ note_font helvetica
+ lock_connections {{curve x1 0}}
+ addUserKnob {20 editDirectory}
+ addUserKnob {22 currentExportPath l "Current NukeStudio Export Path" T "nuke.message( 'Current NukeStudio Export Path\\n' + hiero.ui.getProjectRootInteractive(hiero.core.projects()\[0]) + '/renders/')" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {22 writeNewExportPath l "Alter Write Node with current Export Directory Path" T "nuke.root().begin()\n\nexportPath = hiero.ui.getProjectRootInteractive(hiero.core.projects()\[0]) + '/'\n\n\nfor writeNode in nuke.allNodes('Write'):\n\toldPath = writeNode.knob('file').value()\n\tpathSplit = oldPath.split('/')\n\tfilePath =  pathSplit\[-4] + '/' + pathSplit\[-3] + '/' + pathSplit\[-2] + '/' + pathSplit\[-1]\n\tnewPath = exportPath + filePath\n\t\n\twriteNode.knob('file').setValue(newPath)" +STARTLINE}
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos 0
+ }
+ Output {
+  name Output1
+  xpos 0
+  ypos 300
+ }
+end_group

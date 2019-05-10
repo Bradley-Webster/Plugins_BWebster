@@ -1,0 +1,23 @@
+#! /netDISKS/master/netmt/LINUX64/app/nuke/Nuke11.0v1/libnuke-11.0.1.so -nx
+version 11.0 v1
+Gizmo {
+ addUserKnob {20 User}
+ addUserKnob {41 disable_1 l disable T Sphere1.disable}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 273
+  ypos -99
+ }
+ Sphere {
+  name Sphere1
+  xpos 273
+  ypos -59
+ }
+ Output {
+  name Output1
+  xpos 273
+  ypos 41
+ }
+end_group

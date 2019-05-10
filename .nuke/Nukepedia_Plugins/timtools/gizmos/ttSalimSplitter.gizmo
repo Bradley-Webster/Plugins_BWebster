@@ -1,0 +1,65 @@
+#! C:/Program Files/Nuke10.5v1/nuke-10.5.1.dll -nx
+version 10.5 v1
+Gizmo {
+ addUserKnob {20 User}
+ addUserKnob {41 color T Constant1.color}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {6 AlphaOnly l "Alpha Only" +STARTLINE}
+ addUserKnob {6 PremultResult l "Premult Result" +STARTLINE}
+}
+ Constant {
+  inputs 0
+  channels rgb
+  color {0.5 0 0 1}
+  last 100000
+  name Constant1
+  xpos 235
+  ypos -278
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 51
+  ypos -345
+ }
+ Difference {
+  inputs 2
+  gain 90
+  name Difference1
+  xpos 51
+  ypos -261
+ }
+ Invert {
+  channels alpha
+  name Invert1
+  xpos 51
+  ypos -180
+ }
+ Premult {
+  name Premult1
+  xpos 51
+  ypos -104
+  disable {{!parent.PremultResult x1 0}}
+ }
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle1
+  xpos 51
+  ypos -62
+  disable {{!parent.AlphaOnly}}
+ }
+ Output {
+  name Output1
+  xpos 51
+  ypos -6
+ }
+ Viewer {
+  frame_range 1-100
+  colour_sample_bbox {0.5390625 0.119140625 0.5400390625 0.1201171875}
+  name Viewer1
+  xpos 182
+  ypos 70
+ }
+end_group

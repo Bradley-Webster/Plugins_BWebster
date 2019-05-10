@@ -1,0 +1,48 @@
+#! C:/Program Files/Nuke11.3v3/nuke-11.3.3.dll -nx
+version 11.3 v3
+Gizmo {
+ note_font helvetica
+ addUserKnob {20 User}
+ addUserKnob {41 message T Text1.message}
+ addUserKnob {41 font T Text1.font}
+ addUserKnob {41 box T Text1.box}
+ addUserKnob {41 xjustify l justify T Text1.xjustify}
+ addUserKnob {41 global_font_scale l "global font scale" T Text1.global_font_scale}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -151
+  ypos -60
+ }
+ Text2 {
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  message "INDIANNA TEST!"
+  old_message {{73 78 68 73 65 78 78 65 32 84 69 83 84 33}
+    }
+  box {546.5 981.5 1245.5 1082.5}
+  transforms {{0 2}
+    }
+  cursor_position 14
+  font {{ Adventure : Regular : Adventure.otf : 0 }}
+  center {1024 778}
+  cursor_initialised true
+  initial_cursor_position {{546.5 1082.5}
+    }
+  group_animations {{0} imported: 0 selected: items: "root transform/"}
+  animation_layers {{1 11 1024 778 0 0 1 1 0 0 0 0}
+    }
+  name Text1
+  note_font helvetica
+  selected true
+  xpos -151
+  ypos -20
+ }
+ Output {
+  name Output1
+  xpos -151
+  ypos 80
+ }
+end_group

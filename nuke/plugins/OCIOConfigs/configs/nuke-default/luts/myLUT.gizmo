@@ -1,0 +1,22 @@
+#! /usr/net/app/nuke/Nuke11.0v1.bss1/libnuke-11.0.1.so -nx
+version 11.0 v1
+Gizmo {
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -113
+  ypos -110
+ }
+ Grade {
+  white 4
+  name Grade1
+  xpos -113
+  ypos -70
+ }
+ Output {
+  name Output1
+  xpos -113
+  ypos 30
+ }
+end_group

@@ -1,0 +1,9 @@
+Preferences {
+ inputs 0
+ name Preferences
+ localizationMode off
+ selectedGPUDeviceName "Quadro M4000"
+ platformPathRemaps ""
+ boundingBoxWarning true
+ ExpressionEvaluationMode Always
+}

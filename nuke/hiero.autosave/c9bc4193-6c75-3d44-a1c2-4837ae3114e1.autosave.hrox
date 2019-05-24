@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hieroXML>
+<hieroXML revision="3" release="11.3v4" name="Hiero" version="11">
+ <Media>
+  <Source duration="1" name="Marcie_conv_AG_.v1" guid="{086f1de5-fdd4-da49-9650-07d3c4bffa85}" objName="media" file="C:/Users/CS_SYD_PC2/Documents/Nuke_Projects/Indyzone/Marcie_conv_AG_.v%d.exr 1-1">
+   <sets>
+    <Set domainroot="foundry.source" title="Media">
+     <values>
+      <WeakObjRefValue value="1f95477e-6da6-4ed1-6584-4e7de2227447" name="foundry.source.umid" default="1"/>
+      <IntegerValue value="2016" name="foundry.source.width" default="1"/>
+      <IntegerValue value="1134" name="foundry.source.height" default="1"/>
+      <IntegerValue value="1" name="foundry.source.duration" default="1"/>
+      <TimeBaseValue value="24/1" name="foundry.source.framerate" default="1"/>
+      <TimeBaseValue value="0/0" name="foundry.source.samplerate" default="1"/>
+      <IntegerValue value="1" name="foundry.source.starttime" default="1"/>
+      <IntegerValue value="0" name="foundry.source.timecode" default="1"/>
+      <IntegerValue value="0" name="foundry.source.bitsperchannel" default="1"/>
+      <IntegerValue value="1" name="foundry.source.fragments" default="1"/>
+      <StringValue value="C:/Users/CS_SYD_PC2/Documents/Nuke_Projects/Indyzone/Marcie_conv_AG_.v%d.exr 1-1" name="foundry.source.path" default="1"/>
+      <StringValue value="Marcie_conv_AG_.v%d.exr 1-1" name="foundry.source.shortfilename" default="1"/>
+      <StringValue value="Marcie_conv_AG_.v%d.exr 1-1" name="foundry.source.filename" default="1"/>
+      <FloatValue value="1" name="foundry.source.pixelAspect" default="1"/>
+      <StringValue value="integer" name="foundry.source.channelformat" default="1"/>
+      <StringValue value="colour" name="foundry.source.layers" default="1"/>
+      <StringValue value="RGBA (Float16)  Open Color IO space: 0" name="foundry.source.pixelformat" default="1"/>
+      <IntegerValue value="0" name="foundry.source.bitmapsize" default="1"/>
+     </values>
+    </Set>
+    <Set domainroot="media.exr" title="media.exr">
+     <values>
+      <StringValue value="B:{1 0 1 1},G:{1 0 1 1},R:{1 0 1 1}" name="media.exr.channels" default="1"/>
+      <IntegerValue value="3" name="media.exr.compression" default="1"/>
+      <StringValue value="Zip (16 scanlines)" name="media.exr.compressionName" default="1"/>
+      <StringValue value="220,0,1795,1133" name="media.exr.dataWindow" default="1"/>
+      <StringValue value="0,0,2015,1133" name="media.exr.displayWindow" default="1"/>
+      <IntegerValue value="0" name="media.exr.lineOrder" default="1"/>
+      <FloatValue value="1" name="media.exr.pixelAspectRatio" default="1"/>
+      <StringValue value="0,0" name="media.exr.screenWindowCenter" default="1"/>
+      <FloatValue value="1" name="media.exr.screenWindowWidth" default="1"/>
+      <StringValue value="scanlineimage" name="media.exr.type" default="1"/>
+      <IntegerValue value="1" name="media.exr.version" default="1"/>
+     </values>
+    </Set>
+    <Set domainroot="media.input" title="media.input">
+     <values>
+      <StringValue value="16-bit half float" name="media.input.bitsperchannel" default="1"/>
+      <StringValue value="2019-05-10 22:25:28" name="media.input.ctime" default="1"/>
+      <StringValue value="C:/Users/CS_SYD_PC2/Documents/Nuke_Projects/Indyzone/Marcie_conv_AG_.v1.exr" name="media.input.filename" default="1"/>
+      <StringValue value="exr" name="media.input.filereader" default="1"/>
+      <IntegerValue value="5238668" name="media.input.filesize" default="1"/>
+      <IntegerValue value="1" name="media.input.frame" default="1"/>
+      <IntegerValue value="1134" name="media.input.height" default="1"/>
+      <StringValue value="2019-05-24 09:36:39" name="media.input.mtime" default="1"/>
+      <StringValue value="00:00:00:00" name="media.input.timecode" default="1"/>
+      <IntegerValue value="2016" name="media.input.width" default="1"/>
+     </values>
+    </Set>
+    <Set domainroot="media.nuke" title="media.nuke">
+     <values>
+      <IntegerValue value="0" name="media.nuke.full_layer_names" default="1"/>
+      <StringValue value="ffffffffffffffff" name="media.nuke.node_hash" default="1"/>
+      <StringValue value="10.0v4" name="media.nuke.version" default="1"/>
+     </values>
+    </Set>
+   </sets>
+   <times>
+    <MediaDesc_TimeInfo_MapItem>
+     <MediaDesc objName="k" channelIndex="0">
+      <MediaFlags allone="1" objName="flags"/>
+      <MediaType objName="type" type="0"/>
+     </MediaDesc>
+     <TimeInfo duration="1" based="1" basen="24" objName="v" in="1"/>
+    </MediaDesc_TimeInfo_MapItem>
+   </times>
+   <Layers>
+    <Layer ch0="r" ch3="" layerName="colour" ch1="g" layerTypeName="colour" ch2="b"/>
+   </Layers>
+  </Source>
+  <Clip useSoftTrims="0" timecodeStart="0" timeDisplayFormat="0" name="Marcie_conv_AG_.v" guid="{b6b35aec-f85c-0c4f-a293-0d3a8fa78d7a}" displayTimecode="1" objName="media" displayDropFrames="0" timeOffset="1">
+   <videotracks>
+    <VideoTrack height="40" name="Video 1" guid="c57a5fa6-3509-e748-8393-f57d5dfa8891" collapsed="0">
+     <trackItems>
+      <TrackItem link="internal" guid="{214de5d9-c1e7-d44d-8777-88df5a89cfd5}"/>
+     </trackItems>
+     <sets>
+      <Set domainroot="foundry.track" title="Track">
+       <values>
+        <BooleanValue value="Yes" name="foundry.track.enabled" default="1"/>
+       </values>
+      </Set>
+     </sets>
+    </VideoTrack>
+   </videotracks>
+   <sets>
+    <Set domainroot="foundry.timeline" title="Timeline">
+     <values>
+      <TimeBaseValue value="24/1" name="foundry.timeline.framerate" default="1"/>
+      <TimeBaseValue value="0/0" name="foundry.timeline.samplerate" default="1"/>
+      <IntegerValue value="1" name="foundry.timeline.duration" default="0"/>
+      <IntegerValue value="0" name="foundry.timeline.poster" default="1"/>
+      <StringValue value="colour" name="foundry.timeline.posterLayer" default="1"/>
+      <MediaFormatValue value="1,[ 0, 0, 2016, 1134],[ 0, 0, 2016, 1134]," name="foundry.timeline.outputformat" default="1"/>
+     </values>
+    </Set>
+    <Set domainroot="foundry.source" title="Media">
+     <values>
+      <StringValue value="" name="foundry.source.reelID" default="1"/>
+     </values>
+    </Set>
+   </sets>
+   <node><![CDATA[Read {
+ inputs 0
+ file_type exr
+ file C:/Users/CS_SYD_PC2/Documents/Nuke_Projects/Indyzone/Marcie_conv_AG_.v%d.exr
+ format "2016 1134 0 0 2016 1134 1 "
+ origset true
+ name Marcie_conv_AG__v
+}
+]]></node>
+  </Clip>
+  <Source duration="1" name="Marcie_AG_.v1" guid="{208913c6-e058-af41-ab0e-e96171be4703}" objName="media" file="C:/Users/CS_SYD_PC2/Documents/Nuke_Projects/Indyzone/Marcie_AG_.v%d.exr 1-1">
+   <sets>
+    <Set domainroot="foundry.source" title="Media">
+     <values>
+      <WeakObjRefValue value="9a10c2fb-e823-4b54-e001-cbf867a7f1c2" name="foundry.source.umid" default="1"/>
+      <IntegerValue value="2016" name="foundry.source.width" default="1"/>
+      <IntegerValue value="1134" name="foundry.source.height" default="1"/>
+      <IntegerValue value="1" name="foundry.source.duration" default="1"/>
+      <TimeBaseValue value="24/1" name="foundry.source.framerate" default="1"/>
+      <TimeBaseValue value="0/0" name="foundry.source.samplerate" default="1"/>
+      <IntegerValue value="1" name="foundry.source.starttime" default="1"/>
+      <IntegerValue value="0" name="foundry.source.timecode" default="1"/>
+      <IntegerValue value="0" name="foundry.source.bitsperchannel" default="1"/>
+      <IntegerValue value="1" name="foundry.source.fragments" default="1"/>
+      <StringValue value="C:/Users/CS_SYD_PC2/Documents/Nuke_Projects/Indyzone/Marcie_AG_.v%d.exr 1-1" name="foundry.source.path" default="1"/>
+      <StringValue value="Marcie_AG_.v%d.exr 1-1" name="foundry.source.shortfilename" default="1"/>
+      <StringValue value="Marcie_AG_.v%d.exr 1-1" name="foundry.source.filename" default="1"/>
+      <FloatValue value="1" name="foundry.source.pixelAspect" default="1"/>
+      <StringValue value="integer" name="foundry.source.channelformat" default="1"/>
+      <StringValue value="colour" name="foundry.source.layers" default="1"/>
+      <StringValue value="RGBA (Float16)  Open Color IO space: 0" name="foundry.source.pixelformat" default="1"/>
+      <IntegerValue value="0" name="foundry.source.bitmapsize" default="1"/>
+     </values>
+    </Set>
+    <Set domainroot="media.exr" title="media.exr">
+     <values>
+      <StringValue value="B:{1 0 1 1},G:{1 0 1 1},R:{1 0 1 1}" name="media.exr.channels" default="1"/>
+      <IntegerValue value="3" name="media.exr.compression" default="1"/>
+      <StringValue value="Zip (16 scanlines)" name="media.exr.compressionName" default="1"/>
+      <StringValue value="220,0,1795,1133" name="media.exr.dataWindow" default="1"/>
+      <StringValue value="0,0,2015,1133" name="media.exr.displayWindow" default="1"/>
+      <IntegerValue value="0" name="media.exr.lineOrder" default="1"/>
+      <FloatValue value="1" name="media.exr.pixelAspectRatio" default="1"/>
+      <StringValue value="0,0" name="media.exr.screenWindowCenter" default="1"/>
+      <FloatValue value="1" name="media.exr.screenWindowWidth" default="1"/>
+      <StringValue value="scanlineimage" name="media.exr.type" default="1"/>
+      <IntegerValue value="1" name="media.exr.version" default="1"/>
+     </values>
+    </Set>
+    <Set domainroot="media.input" title="media.input">
+     <values>
+      <StringValue value="16-bit half float" name="media.input.bitsperchannel" default="1"/>
+      <StringValue value="2019-05-10 22:25:28" name="media.input.ctime" default="1"/>
+      <StringValue value="C:/Users/CS_SYD_PC2/Documents/Nuke_Projects/Indyzone/Marcie_AG_.v1.exr" name="media.input.filename" default="1"/>
+      <StringValue value="exr" name="media.input.filereader" default="1"/>
+      <IntegerValue value="5285261" name="media.input.filesize" default="1"/>
+      <IntegerValue value="1" name="media.input.frame" default="1"/>
+      <IntegerValue value="1134" name="media.input.height" default="1"/>
+      <StringValue value="2019-05-24 09:36:39" name="media.input.mtime" default="1"/>
+      <StringValue value="00:00:00:00" name="media.input.timecode" default="1"/>
+      <IntegerValue value="2016" name="media.input.width" default="1"/>
+     </values>
+    </Set>
+    <Set domainroot="media.nuke" title="media.nuke">
+     <values>
+      <IntegerValue value="0" name="media.nuke.full_layer_names" default="1"/>
+      <StringValue value="ffffffffffffffff" name="media.nuke.node_hash" default="1"/>
+      <StringValue value="10.0v4" name="media.nuke.version" default="1"/>
+     </values>
+    </Set>
+   </sets>
+   <times>
+    <MediaDesc_TimeInfo_MapItem>
+     <MediaDesc objName="k" channelIndex="0">
+      <MediaFlags allone="1" objName="flags"/>
+      <MediaType objName="type" type="0"/>
+     </MediaDesc>
+     <TimeInfo duration="1" based="1" basen="24" objName="v" in="1"/>
+    </MediaDesc_TimeInfo_MapItem>
+   </times>
+   <Layers>
+    <Layer ch0="r" ch3="" layerName="colour" ch1="g" layerTypeName="colour" ch2="b"/>
+   </Layers>
+  </Source>
+ </Media>
+ <Project timelineReformatResizeType="Width" HeroView="0" eightBitLut="sRGB" useViewColors="0" thumbnailLut="sRGB" buildTrackName="VFX" logLut="Cineon" timelineReformatCenter="1" redVideoDecodeMode="0" ocioConfigName="custom" sixteenBitLut="sRGB" timelineReformatType="Disabled" shotPresetName="Basic Nuke Shot With Annotations" samplerate="48000/1" floatLut="linear" customExportRootPath="" posterCustomFrame="0" project_directory="" name="c9bc4193-6c75-3d44-a1c2-4837ae3114e1" ocioConfigCustom="0" nukeUseOCIO="1" editable="1" timedisplayformat="0" guid="{c9bc4193-6c75-3d44-a1c2-4837ae3114e1}" posterFrameSetting="First" framerate="24/1" ocioconfigpath="" starttimecode="86400" viewerLut="sRGB" exportRootPathMode="ProjectDirectory" workingSpace="linear">
+  <items>
+   <RootBinProjectItem name="Sequences" editable="1" guid="{2c60f00a-df60-2e4a-90f5-de134705ce7a}">
+    <items>
+     <SequenceProjectItemRoot name="Sequence 1" editable="1" guid="{58b4be3b-a375-664b-80fb-6301c6d95002}" MasterVersion="">
+      <items>
+       <SequenceProjectItemVersion name="Sequence 1" editable="1" guid="{67caa3dc-0238-7a4a-947f-cf7e0724fd1d}" isHidden="0">
+        <Sequence useSoftTrims="0" timecodeStart="86400" timeDisplayFormat="0" name="Sequence 1" guid="{edd73641-6edc-5743-89f1-a6a28c110e23}" displayTimecode="1" objName="sequence" displayDropFrames="0" timeOffset="0">
+         <videotracks>
+          <VideoTrack height="52" name="Video 1" guid="f7c502a4-ab9a-d14f-8268-c604d2879307" collapsed="0">
+           <trackItems>
+            <TrackItem link="internal" guid="{53f8e718-6d99-1742-b0e7-4b71fc417ee5}"/>
+           </trackItems>
+           <SubTracks>
+            <SubTrack index="0">
+             <SubTrackItems>
+              <FXTrackItem link="internal" guid="{79d2fe1c-1638-fb48-a4e1-b2d0dff047f0}"/>
+             </SubTrackItems>
+            </SubTrack>
+           </SubTracks>
+           <sets>
+            <Set domainroot="foundry.track" title="Track">
+             <values>
+              <BooleanValue value="Yes" name="foundry.track.enabled" default="1"/>
+             </values>
+            </Set>
+           </sets>
+          </VideoTrack>
+         </videotracks>
+         <audiotracks>
+          <AudioTrack height="40" name="Audio 1" volume="1" guid="1be0041b-c2e6-0743-b78d-4c5ca1c43bce" stereochannel="left" collapsed="0">
+           <sets>
+            <Set domainroot="foundry.track" title="Track">
+             <values>
+              <BooleanValue value="Yes" name="foundry.track.enabled" default="1"/>
+             </values>
+            </Set>
+           </sets>
+          </AudioTrack>
+         </audiotracks>
+         <sets>
+          <Set domainroot="foundry.timeline" title="Timeline">
+           <values>
+            <TimeBaseValue value="24/1" name="foundry.timeline.framerate" default="1"/>
+            <TimeBaseValue value="48000/1" name="foundry.timeline.samplerate" default="1"/>
+            <IntegerValue value="1" name="foundry.timeline.duration" default="0"/>
+            <MediaFormatValue value="1,[ 0, 0, 1920, 1080],[ 0, 0, 1920, 1080],HD_1080" name="foundry.timeline.outputformat" default="1"/>
+           </values>
+          </Set>
+         </sets>
+        </Sequence>
+       </SequenceProjectItemVersion>
+      </items>
+      <Sequence link="internal" guid="{edd73641-6edc-5743-89f1-a6a28c110e23}" objName="sequence"/>
+      <ActiveItemIndex>0</ActiveItemIndex>
+      <TimelineProjectItem name="" editable="1" objName="Snapshots"/>
+     </SequenceProjectItemRoot>
+     <SequenceProjectItemRoot name="Marcie_AG_.v" editable="1" guid="{031fffd6-2d0e-164c-b7fd-1aec6541bcd6}" MasterVersion="C:/Users/CS_SYD_PC2/Documents/Nuke_Projects/Indyzone/Marcie_AG_.v%d.exr 1-1">
+      <items>
+       <SequenceProjectItemVersion name="Marcie_AG_.v" editable="1" guid="{c5a7fc6d-c8d2-6348-9b2d-468f5ba787a1}" isHidden="0">
+        <Clip useSoftTrims="0" timecodeStart="0" timeDisplayFormat="0" name="Marcie_AG_.v" guid="{faca0be1-ffa8-7442-9769-0450539e858f}" displayTimecode="1" objName="sequence" displayDropFrames="0" timeOffset="1">
+         <videotracks>
+          <VideoTrack height="40" name="Video 1" guid="d20e0322-2c5c-5f4b-b7a3-794d8101dd1e" collapsed="0">
+           <trackItems>
+            <TrackItem link="internal" guid="{664f7e51-be20-e34c-9c84-87039c57f587}"/>
+           </trackItems>
+           <sets>
+            <Set domainroot="foundry.track" title="Track">
+             <values>
+              <BooleanValue value="Yes" name="foundry.track.enabled" default="1"/>
+             </values>
+            </Set>
+           </sets>
+          </VideoTrack>
+         </videotracks>
+         <sets>
+          <Set domainroot="foundry.timeline" title="Timeline">
+           <values>
+            <TimeBaseValue value="24/1" name="foundry.timeline.framerate" default="1"/>
+            <TimeBaseValue value="0/0" name="foundry.timeline.samplerate" default="1"/>
+            <IntegerValue value="1" name="foundry.timeline.duration" default="0"/>
+            <IntegerValue value="0" name="foundry.timeline.poster" default="1"/>
+            <StringValue value="colour" name="foundry.timeline.posterLayer" default="1"/>
+            <MediaFormatValue value="1,[ 0, 0, 2016, 1134],[ 0, 0, 2016, 1134]," name="foundry.timeline.outputformat" default="1"/>
+           </values>
+          </Set>
+          <Set domainroot="foundry.source" title="Media">
+           <values>
+            <StringValue value="" name="foundry.source.reelID" default="1"/>
+           </values>
+          </Set>
+         </sets>
+         <node><![CDATA[Read {
+ inputs 0
+ file_type exr
+ file C:/Users/CS_SYD_PC2/Documents/Nuke_Projects/Indyzone/Marcie_AG_.v%d.exr
+ format "2016 1134 0 0 2016 1134 1 "
+ origset true
+ name Marcie_AG__v
+}
+]]></node>
+        </Clip>
+       </SequenceProjectItemVersion>
+      </items>
+      <Clip link="internal" guid="{faca0be1-ffa8-7442-9769-0450539e858f}" objName="sequence"/>
+      <ActiveItemIndex>0</ActiveItemIndex>
+      <TimelineProjectItem name="" editable="1" objName="Snapshots"/>
+     </SequenceProjectItemRoot>
+     <SequenceProjectItemRoot name="Marcie_conv_AG_.v" editable="1" guid="{37cb3ed0-5d23-a54d-b456-6edc561c91db}" MasterVersion="C:/Users/CS_SYD_PC2/Documents/Nuke_Projects/Indyzone/Marcie_conv_AG_.v%d.exr 1-1">
+      <items>
+       <SequenceProjectItemVersion name="Marcie_conv_AG_.v" editable="1" guid="{09e63e73-141b-5747-914a-f00dd0e9e178}" isHidden="0">
+        <Clip link="internal" guid="{b6b35aec-f85c-0c4f-a293-0d3a8fa78d7a}" objName="sequence"/>
+       </SequenceProjectItemVersion>
+      </items>
+      <Clip link="internal" guid="{b6b35aec-f85c-0c4f-a293-0d3a8fa78d7a}" objName="sequence"/>
+      <ActiveItemIndex>0</ActiveItemIndex>
+      <TimelineProjectItem name="" editable="1" objName="Snapshots"/>
+     </SequenceProjectItemRoot>
+    </items>
+    <BinViewType>2</BinViewType>
+    <BinViewZoom>70</BinViewZoom>
+    <BinViewSortColumnIndex>0</BinViewSortColumnIndex>
+    <BinViewSortOrder>0</BinViewSortOrder>
+    <AllowedItems>13</AllowedItems>
+   </RootBinProjectItem>
+   <RootBinProjectItem name="Tags" editable="1" guid="{e14a7e0e-d476-9344-b7f5-a5972236bd1f}">
+    <BinViewType>2</BinViewType>
+    <BinViewZoom>70</BinViewZoom>
+    <BinViewSortColumnIndex>0</BinViewSortColumnIndex>
+    <BinViewSortOrder>0</BinViewSortOrder>
+    <AllowedItems>17</AllowedItems>
+   </RootBinProjectItem>
+  </items>
+  <BinViewType>2</BinViewType>
+  <BinViewZoom>70</BinViewZoom>
+  <BinViewSortColumnIndex>0</BinViewSortColumnIndex>
+  <BinViewSortOrder>0</BinViewSortOrder>
+  <AllowedItems>-1</AllowedItems>
+  <RootBinProjectItem link="internal" guid="{2c60f00a-df60-2e4a-90f5-de134705ce7a}" objName="sequencesBin"/>
+  <RootBinProjectItem link="internal" guid="{e14a7e0e-d476-9344-b7f5-a5972236bd1f}" objName="tagsBin"/>
+  <MediaFormatValue value="1,[ 0, 0, 1920, 1080],[ 0, 0, 1920, 1080],HD_1080" name="" default="0" objName="outputformat"/>
+  <Views>
+   <View color="#ffffff" name="main"/>
+  </Views>
+ </Project>
+ <UIState>
+  <items>
+   <Viewer objectname="uk.co.thefoundry.sequenceviewer.1" audioLatencyMs="0" mode="0" audioMute="0" audioLevel="50" time="0">
+    <players>
+     <player lod="-1" channels="0" playSpeed="1" translateX="1" rotate="0" scaleX="0.384375" repeatMode="2" displayGain="1" zoomMode="2" time="0" translateY="1" displayGamma="1" scaleY="0.384375" LUT="sRGB"/>
+     <player lod="-1" channels="0" playSpeed="1" translateX="0" rotate="0" scaleX="0.180176" repeatMode="0" displayGain="1" zoomMode="2" time="0" translateY="0" displayGamma="1" scaleY="0.180176" LUT="sRGB"/>
+    </players>
+   </Viewer>
+   <TimelineEditor objectname="uk.co.thefoundry.timeline.1" lastVisibleTime="0" firstVisibleTime="0">
+    <SequenceProjectItemVersion link="internal" guid="{67caa3dc-0238-7a4a-947f-cf7e0724fd1d}" objName="timeline"/>
+    <Viewer link="internal" guid="{a94cd806-88a6-7b41-8513-7bfce34f080c}" objName="viewer"/>
+   </TimelineEditor>
+  </items>
+ </UIState>
+ <TrackItemLinkGroups>
+  <TrackItemLinkGroup guid="{2f9a6a1f-057c-4245-8915-e31d95c1fd24}" objName="links">
+   <trackItems>
+    <TrackItem link="internal" guid="{53f8e718-6d99-1742-b0e7-4b71fc417ee5}"/>
+   </trackItems>
+  </TrackItemLinkGroup>
+  <TrackItemLinkGroup guid="{b9fbf8ea-c817-fe48-b2bd-98adee977cf9}" objName="links">
+   <trackItems>
+    <TrackItem link="internal" guid="{214de5d9-c1e7-d44d-8777-88df5a89cfd5}"/>
+   </trackItems>
+  </TrackItemLinkGroup>
+  <TrackItemLinkGroup guid="{70edb924-9f23-1540-b4a2-24b1cb5a8946}" objName="links">
+   <trackItems>
+    <TrackItem link="internal" guid="{664f7e51-be20-e34c-9c84-87039c57f587}"/>
+   </trackItems>
+  </TrackItemLinkGroup>
+ </TrackItemLinkGroups>
+ <SubTrackItemCollection>
+  <FXTrackItem r="0.5" a="1" timelineDuration="1" enabled="1" b="0.5" name="BlinkScript2" guid="{79d2fe1c-1638-fb48-a4e1-b2d0dff047f0}" g="0.5" timelineIn="0">
+   <node><![CDATA[BlinkScript {
+ inputs 0
+ recompileCount 1
+ KernelDescription "2 \"SaturationKernel\" iterate pixelWise 5bf75605554ae85bdb7e5f63bb463baa405e28e066b03d296b54bb6c5f395cfd 2 \"src\" Read Point \"dst\" Write Point 1 \"Saturation\" Float 1 mpmZPw== 1 \"saturation\" 1 1 1 \"coefficients\" Float 3 1 AAAAAAAAAAAAAAAAAAAAAA=="
+ kernelSource "kernel SaturationKernel : ImageComputationKernel<ePixelWise>\n\{\n  Image<eRead, eAccessPoint, eEdgeClamped> src; // the input image\n  Image<eWrite> dst; // the output image\n\n  param:\n    float saturation; // This parameter is made available to the user.\n\n  local:\n    float3 coefficients;  // This local variable is not exposed to the user.\n\n  // In define(), parameters can be given labels and default values.\n  void define() \{\n    defineParam(saturation, \"Saturation\", 1.2f);\n  \}\n\n  // The init() function is run before any calls to process().\n  // Local variables can be initialized here.\n  void init() \{\n    // Initialise coefficients according to rec. 709 standard.\n    coefficients.x = 0.2126f;\n    coefficients.y = 0.7152f;\n    coefficients.z = 0.0722f;\n  \}\n\n  void process() \{\n    // Read the input image\n    SampleType(src) input = src();\n\n    // Isolate the RGB components\n    float3 srcPixel(input.x, input.y, input.z);\n\n    // Calculate luma\n    float luma = srcPixel.x * coefficients.x\n               + srcPixel.y * coefficients.y\n               + srcPixel.z * coefficients.z;\n    // Apply saturation\n    float3 saturatedPixel = (srcPixel - luma) * saturation + luma;\n\n    // Write the result to the output image\n    dst() = float4(saturatedPixel.x, saturatedPixel.y, saturatedPixel.z, input.w);\n  \}\n\};\n"
+ rebuild ""
+ SaturationKernel_Saturation 2.400000095
+ rebuild_finalise ""
+ name BlinkScript2
+}
+]]></node>
+  </FXTrackItem>
+ </SubTrackItemCollection>
+ <trackItemCollection>
+  <TrackItem boxPAR="1" boxForceShape="0" resizeCenter="1" channelIndex="0" timelineIn="0" boxSizeHeight="200" sourceDuration="1" resizeType="1" type="1" playbackSpeed="1" conformScore="0" enabled="1" name="Marcie_conv_AG_.v" sourceIn="1" timelineDuration="1" guid="{214de5d9-c1e7-d44d-8777-88df5a89cfd5}" matchdescription="" boxSizeWidth="200">
+   <TrackItemLinkGroup link="internal" guid="{b9fbf8ea-c817-fe48-b2bd-98adee977cf9}" objName="links"/>
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+    <Effect identifier="cyclone.ddimage.Read Settings.1_0" name="" objName="preprocessed">
+     <values>
+      <EffectParameter source="0">
+       <EnumValue value="0" name="foundry.effect.blendfunc" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <StringValue value="" name="foundry.effect.valuesource" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <StringValue value="" name="foundry.effect.domainroot" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <BooleanValue value="Yes" name="foundry.effect.enabled" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <FloatValue value="1" name="foundry.effect.opacity" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <BooleanValue value="Yes" name="foundry.effect.expanded" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <StringValue value="default" name="colourspacename" default="1" objName="value"/>
+      </EffectParameter>
+     </values>
+    </Effect>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup objName="media">
+    <groupdata>
+     <MediaInstance_Vector quality="0">
+      <Source link="internal" guid="{086f1de5-fdd4-da49-9650-07d3c4bffa85}" objName="media"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+   <MediaHashes>
+    <MediaHash hash="06c9127255ffb36312b4a757ce3496c11c963de14a743c3bd5e348d3619373dd" frameOffset="1"/>
+   </MediaHashes>
+  </TrackItem>
+  <TrackItem boxPAR="1" boxForceShape="0" resizeCenter="1" channelIndex="0" timelineIn="0" boxSizeHeight="200" sourceDuration="0" resizeType="1" type="0" playbackSpeed="0" conformScore="0" enabled="1" name="Marcie_conv_AG_.v" sourceIn="0" timelineDuration="1" guid="{53f8e718-6d99-1742-b0e7-4b71fc417ee5}" matchdescription="" boxSizeWidth="200">
+   <TrackItemLinkGroup link="internal" guid="{2f9a6a1f-057c-4245-8915-e31d95c1fd24}" objName="links"/>
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup objName="media">
+    <groupdata>
+     <MediaInstance_Vector quality="0">
+      <Clip link="internal" guid="{b6b35aec-f85c-0c4f-a293-0d3a8fa78d7a}" objName="media"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+  </TrackItem>
+  <TrackItem boxPAR="1" boxForceShape="0" resizeCenter="1" channelIndex="0" timelineIn="0" boxSizeHeight="200" sourceDuration="1" resizeType="1" type="1" playbackSpeed="1" conformScore="0" enabled="1" name="Marcie_AG_.v" sourceIn="1" timelineDuration="1" guid="{664f7e51-be20-e34c-9c84-87039c57f587}" matchdescription="" boxSizeWidth="200">
+   <TrackItemLinkGroup link="internal" guid="{70edb924-9f23-1540-b4a2-24b1cb5a8946}" objName="links"/>
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+    <Effect identifier="cyclone.ddimage.Read Settings.1_0" name="" objName="preprocessed">
+     <values>
+      <EffectParameter source="0">
+       <EnumValue value="0" name="foundry.effect.blendfunc" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <StringValue value="" name="foundry.effect.valuesource" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <StringValue value="" name="foundry.effect.domainroot" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <BooleanValue value="Yes" name="foundry.effect.enabled" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <FloatValue value="1" name="foundry.effect.opacity" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <BooleanValue value="Yes" name="foundry.effect.expanded" default="1" objName="value"/>
+      </EffectParameter>
+      <EffectParameter source="0">
+       <StringValue value="default" name="colourspacename" default="1" objName="value"/>
+      </EffectParameter>
+     </values>
+    </Effect>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup objName="media">
+    <groupdata>
+     <MediaInstance_Vector quality="0">
+      <Source link="internal" guid="{208913c6-e058-af41-ab0e-e96171be4703}" objName="media"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+   <MediaHashes>
+    <MediaHash hash="afba08be7c21f5b76a48b5e8f42a040946eb5174d6df2bdbe07bdac54787e9de" frameOffset="1"/>
+   </MediaHashes>
+  </TrackItem>
+ </trackItemCollection>
+</hieroXML>

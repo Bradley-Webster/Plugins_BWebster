@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1904" h="1121" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1" focus="true">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1860" stretch="1"/>
+            <splitter orientation="1">
+                <split size="928"/>
+                <dock id="" activePageId="Viewer.2">
+                    <page id="Viewer.2"/>
+                </dock>
+                <split size="928"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.3"/>
+                    <page id="Viewer.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+    <window x="1912" y="0" w="1920" h="1177" screen="1">
+        <splitter orientation="1">
+            <split size="1276"/>
+            <splitter orientation="2">
+                <split size="202"/>
+                <dock id="" activePageId="DopeSheet.1">
+                    <page id="DopeSheet.1"/>
+                </dock>
+                <split size="971"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                </dock>
+            </splitter>
+            <split size="640"/>
+            <dock id="" activePageId="tk_multi_shotgunpanel_main">
+                <page id="Properties.1"/>
+                <page id="tk_multi_shotgunpanel_main"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>

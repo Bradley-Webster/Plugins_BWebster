@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><script>print nuke.selectedNode().knob('PNG_Options')
-
-
-
-nuke.selectedNode().knob('knobChanged').setValue(&quot;thisNode = nuke.thisNode()\nthisKnob = nuke.thisKnob()\n\nallGroups = ['JPEG_Options','PNG_Options','TIFF_Options','EXR_Options','DPX_Options']\n\ndef hideKnobs():\n for knobs in allGroups:\n  thisNode.knob(knobs).setVisible(False)\n\nif thisKnob.value() == 'None':\n hideKnobs()\nif thisKnob.value() == 'JPEG':\n hideKnobs()\n thisNode.knob('JPEG_Options').setVisible(True)\nif thisKnob.value() == 'PNG':\n hideKnobs()\n thisNode.knob('PNG_Options').setVisible(True)\nif thisKnob.value() == 'TIFF':\n hideKnobs()\n thisNode.knob('TIFF_Options').setVisible(True)\nif thisKnob.value() == 'EXR':\n hideKnobs()\n thisNode.knob('EXR_Options').setVisible(True)\nif thisKnob.value() == 'DPX':\n hideKnobs()\n thisNode.knob('DPX_Options').setVisible(True)\n&quot;) </script>
